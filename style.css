@@ -466,11 +466,13 @@ body.dark-mode .discord-button:hover {
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: background-color 0.3s ease;
+  color: #000;
 }
 
 .web-node.upcoming {
   background-color: #ddd;
   opacity: 0.9;
+  color: #333;
 }
 
 .center-node {
@@ -531,9 +533,6 @@ body.dark-mode .discord-button:hover {
   color: #5865F2;
   z-index: 2;
   border-radius: 8px;
-
-  /* To center the line *through* the box */
-  /* The line is at 50%, so make sure the box is centered */
 }
 
 .timeline-mobile .mobile-node small {
@@ -568,9 +567,9 @@ body.dark-mode .discord-button:hover {
   height: 100px;
   border-radius: 50%;
   position: relative;
-  left: 50%; /* position the left edge at 50% */
-  transform: translateX(-50%); /* shift left by half width */
-  margin: 2rem 0; /* vertical spacing */
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 2rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -592,6 +591,85 @@ body.dark-mode .discord-button:hover {
   background-color: #999;
 }
 
+/* DARK MODE FIXES */
+
+.timeline-web.dark-mode {
+  background-color: #121212 !important;
+  color: #ddd !important;
+}
+
+.timeline-web.dark-mode .web-container {
+  background-color: #1e1e1e !important;
+  box-shadow: 0 0 20px #222 !important;
+}
+
+.timeline-web.dark-mode .center-node {
+  background-color: #5865F2 !important;
+  color: white !important;
+  box-shadow: 0 0 15px #5865F2 !important;
+}
+
+.timeline-web.dark-mode .web-node {
+  background-color: #222 !important;
+  color: #ddd !important;
+  box-shadow: inset 0 0 10px #000 !important;
+}
+
+.timeline-web.dark-mode .web-node.upcoming {
+  border: 2px dashed #7999ff !important;
+  color: #7999ff !important;
+  background-color: #1a1a3d !important;
+}
+
+.timeline-web.dark-mode .web-lines line {
+  stroke: #7999ff !important;
+  opacity: 0.7 !important;
+}
+
+/* Timeline Mobile Dark Mode */
+
+.timeline-mobile.dark-mode {
+  background-color: #121212 !important;
+  color: #ddd !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.timeline-mobile.dark-mode .mobile-node {
+  background-color: #222 !important;
+  color: #ddd !important;
+  border-color: #555 !important;
+  box-shadow: inset 0 0 12px #000 !important;
+  border-radius: 24px !important;
+  padding: 14px 24px !important;
+  width: 200px !important;
+  margin: 12px 0 !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  user-select: none !important;
+  cursor: default !important;
+}
+
+.timeline-mobile.dark-mode .mobile-node.center-node {
+  background-color: #5865F2 !important;
+  border-color: #5865F2 !important;
+  color: white !important;
+  box-shadow: 0 0 15px #5865F2 !important;
+}
+
+.timeline-mobile.dark-mode .mobile-node.upcoming {
+  border-style: dashed !important;
+  border-color: #7999ff !important;
+  background-color: #1a1a3d !important;
+  color: #7999ff !important;
+}
+
+.timeline-mobile.dark-mode small {
+  color: #aaa !important;
+}
+
 @media (max-width: 600px) {
   .timeline-web {
     display: none;
@@ -601,34 +679,34 @@ body.dark-mode .discord-button:hover {
   }
 
   h1 {
-  text-align: center;
-  margin-top: 60px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 0px;
-  font-size: 40px;
+    text-align: center;
+    margin-top: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    font-size: 40px;
   }
 
   h5 {
-  text-align: center;
-  margin-top: 60px;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-bottom: 15px;
+    text-align: center;
+    margin-top: 60px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
   }
 
   .team-container {
     margin-top: 20px;
-}
+  }
 
   .settings-container {
-  position: absolute;
-  top: 135px;
-  right: 20px;
-  z-index: 1000;
-}
+    position: absolute;
+    top: 135px;
+    right: 20px;
+    z-index: 1000;
+  }
 
-    .navbar-logo {
+  .navbar-logo {
     margin-bottom: 8px;
   }
 
