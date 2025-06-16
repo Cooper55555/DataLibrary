@@ -63,7 +63,7 @@ body.dark-mode .region-button:hover {
 
 .settings-container {
   position: absolute;
-  top: 20px;
+  top: 80px;
   right: 20px;
   z-index: 1000;
 }
@@ -274,20 +274,108 @@ h1 {
   font-size: 50px;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  user-select: none;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navbar-links button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  font-family: inherit;
+  font-weight: 600;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-links button:hover {
+  color: #ccc;
+  border-bottom-color: white;
+}
+
+.navbar-links button.active {
+  color: white;
+  border-bottom-color: white;
+  font-weight: bold;
+}
+
+.team-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.team-member {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+.team-member img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.team-member h3 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #666;
+}
+
+body.dark-mode .team-member {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 6px 20px rgba(255,255,255,0.05);
+}
+
+body.dark-mode .team-member p {
+  color: #aaa;
+}
+
 /* Responsive: stack on narrow screens */
 @media (max-width: 600px) {
-  .region-buttons-container {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .region-button {
-    width: 100%;
-    min-width: unset;
-    padding: 30px 20px;
-    font-size: 1.1rem;
-  }
-
   h1 {
   text-align: center;
   margin-top: 60px;
@@ -303,5 +391,42 @@ h1 {
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
+  }
+
+  .team-container {
+    margin-top: 20px;
+}
+
+  .settings-container {
+  position: absolute;
+  top: 135px;
+  right: 20px;
+  z-index: 1000;
+}
+
+    .navbar-logo {
+    margin-bottom: 8px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar-links {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .navbar-links button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .dark-mode .navbar-links button {
+    color: #eee;
   }
 }

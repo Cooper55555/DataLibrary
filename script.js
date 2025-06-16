@@ -3,6 +3,20 @@ const links = [
   { name: "Roblox", url: "https://cooper55555.github.io/RobloxLibrary/" },
 ];
 
+  const navButtons = document.querySelectorAll(".nav-btn");
+  navButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      navButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const sectionId = btn.getAttribute("data-section");
+      document.querySelectorAll(".section").forEach(section => {
+        section.style.display = (section.id === sectionId) ? "" : "none";
+        section.classList.toggle("active", section.id === sectionId);
+      });
+    });
+  });
+
 // Grab the main container
 const app = document.getElementById("app");
 

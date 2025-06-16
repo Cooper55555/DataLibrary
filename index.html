@@ -11,17 +11,57 @@
   />
 </head>
 <body>
+
+        <nav id="main-navbar" class="navbar">
+      <a class="navbar-logo">DataLibrary</a>
+      <div class="navbar-links">
+        <button class="nav-btn active" data-section="first-section">HOME</button>
+        <button class="nav-btn" data-section="second-section">TEAM</button>
+      </div>
+    </nav>
+
+<div id="first-section" class="section">
   <div class="settings-container">
     <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
   </div>
-
   <h1>The Websites Of DataLibrary</h1>
-
-  <div class="search-bar">
+    <div class="search-bar">
     <input type="text" id="search" placeholder="Search..." />
   </div>
+  <div class="home-container">
+  <main id="app"></main>
+  </div>
+</div>
 
-<div class="home-container">
+<div id="second-section" class="section" style="display:none;">
+  <div class="settings-container">
+    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+  </div>
+  <h1>Meet The Team</h1>
+  <div class="team-container">
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/1262336556966871101/702dde19270f61624786d9b89715bc48.webp?size=80" alt="Dev 1" />
+      <h3>Cooper</h3>
+      <p>Full Stack Dev</p>
+    </div>
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/954342432416358420/8669e174f4e7595868723679806ad5e4.webp?size=80" alt="Dev 2" />
+      <h3>Ampired</h3>
+      <p>Frontend Dev</p>
+    </div>
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/779231982470168597/40da386e0ad70596edfc3c14cc0dcc8a.webp?size=80" alt="Dev 3" />
+      <h3>Pepper</h3>
+      <p>Frontend Dev</p>
+    </div>
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/1383395562333929482/bba4a5cc613f32736a89b9902cc408bd.webp?size=80" alt="Dev 4" />
+      <h3>Sugar</h3>
+      <p>Full Stack Dev</p>
+    </div>
+    <!-- Add more team-member divs as needed -->
+  </div>
+</div>
 
 <div id="settings-modal-tcg" class="modal hidden">
   <div class="modal-content">
@@ -54,10 +94,6 @@
       ></a>
     </div>
   </div>
-</div>
-
-  <main id="app"></main>
-
 </div>
 
     <div class="copyright-container">
