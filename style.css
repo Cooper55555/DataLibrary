@@ -374,8 +374,232 @@ body.dark-mode .team-member p {
   color: #aaa;
 }
 
-/* Responsive: stack on narrow screens */
+.team-contact {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.team-contact h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.team-contact p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.discord-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #5865F2;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.discord-button:hover {
+  background-color: #4752c4;
+}
+
+/* Dark mode support */
+body.dark-mode .team-contact {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark-mode .discord-button {
+  background-color: #7289da;
+}
+
+body.dark-mode .discord-button:hover {
+  background-color: #5b6eae;
+}
+
+.timeline-web {
+  text-align: center;
+  padding: 4rem 1rem;
+  position: relative;
+  display: block;
+}
+
+.web-container {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.web-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.web-lines line {
+  stroke: #5865F2;
+  stroke-width: 2;
+  stroke-dasharray: 4 2;
+}
+
+.web-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translate(var(--x), var(--y));
+  z-index: 1;
+  background-color: #f5f5f5;
+  padding: 0.8rem 1rem;
+  border-radius: 0.8rem;
+  width: 160px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.web-node.upcoming {
+  background-color: #ddd;
+  opacity: 0.9;
+}
+
+.center-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-weight: bold;
+  font-size: 1.6rem;
+  background-color: #5865F2;
+  color: white;
+  border-radius: 50%;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.2;
+}
+
+/* TIMELINE MOBILE (Phones) - hidden by default */
+
+.timeline-mobile {
+  display: none;
+  max-width: 280px;
+  margin: 3rem auto;
+  position: relative;
+  padding: 0;
+}
+
+.timeline-mobile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background-color: #5865F2;
+  z-index: 1;
+  border-radius: 2px;
+}
+
+.timeline-mobile .mobile-node {
+  position: relative;
+  background: white;
+  border: 3px solid #5865F2;
+  padding: 1.2rem 1.5rem;
+  margin: 1rem 0;
+  width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #5865F2;
+  z-index: 2;
+  border-radius: 8px;
+
+  /* To center the line *through* the box */
+  /* The line is at 50%, so make sure the box is centered */
+}
+
+.timeline-mobile .mobile-node small {
+  display: block;
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 0.3rem;
+}
+
+.timeline-mobile .mobile-node::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #5865F2;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-sizing: content-box;
+  z-index: 3;
+}
+
+.timeline-mobile .mobile-node.center-node {
+  background-color: #5865F2;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  left: 50%; /* position the left edge at 50% */
+  transform: translateX(-50%); /* shift left by half width */
+  margin: 2rem 0; /* vertical spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 3px solid #5865F2;
+  box-sizing: border-box;
+}
+
+.timeline-mobile .mobile-node.center-node::before {
+  display: none;
+}
+
+.timeline-mobile .mobile-node.upcoming {
+  border-color: #999;
+  color: #999;
+}
+
+.timeline-mobile .mobile-node.upcoming::before {
+  background-color: #999;
+}
+
 @media (max-width: 600px) {
+  .timeline-web {
+    display: none;
+  }
+  .timeline-mobile {
+    display: block;
+  }
+
   h1 {
   text-align: center;
   margin-top: 60px;
