@@ -1,6 +1,7 @@
 const links = [
   { name: "Pokemon", url: "https://cooper55555.github.io/PokeLibrary/" },
   { name: "Roblox", url: "https://cooper55555.github.io/RobloxLibrary/" },
+  { name: "Valorant", url: "https://cooper55555.github.io/ValorLibrary/" },
 ];
 
   const navButtons = document.querySelectorAll(".nav-btn");

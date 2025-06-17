@@ -9,18 +9,18 @@ body {
 .home-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
 }
 
 /* Container holding buttons */
 .region-buttons-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  max-width: 400px; /* narrower container */
+  max-width: 1200px;
+  justify-content: center;
 }
 
 .region-button {
-  width: 100%; /* full width */
   padding: 20px 30px;
   font-size: 1.3rem;
   border-radius: 12px;
