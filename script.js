@@ -1,83 +1,123 @@
-const links = [
-  { name: "Pokemon", url: "https://cooper55555.github.io/PokeLibrary/" },
-  { name: "Roblox", url: "https://cooper55555.github.io/RobloxLibrary/" },
-  { name: "Valorant", url: "https://cooper55555.github.io/ValorLibrary/" },
-];
-
+document.addEventListener("DOMContentLoaded", () => {
+  // === Tab switching logic ===
   const navButtons = document.querySelectorAll(".nav-btn");
-  navButtons.forEach(btn => {
+  const sections = document.querySelectorAll(".section");
+
+  navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      navButtons.forEach(b => b.classList.remove("active"));
+      // Remove active class from all buttons
+      navButtons.forEach((b) => b.classList.remove("active"));
+      // Add active class to clicked button
       btn.classList.add("active");
 
-      const sectionId = btn.getAttribute("data-section");
-      document.querySelectorAll(".section").forEach(section => {
-        section.style.display = (section.id === sectionId) ? "" : "none";
-        section.classList.toggle("active", section.id === sectionId);
+      const sectionToShow = btn.dataset.section;
+
+      // Show the right section, hide others
+      sections.forEach((section) => {
+        if (section.id === sectionToShow) {
+          section.style.display = "";
+        } else {
+          section.style.display = "none";
+        }
       });
     });
   });
 
-// Grab the main container
-const app = document.getElementById("app");
+  // === Your existing links data and filter rendering ===
+  const links = [
+    {
+      name: "Pokemon",
+      url: "https://cooper55555.github.io/PokeLibrary/",
+      description: "Explore an big Pokémon checklist with loads of functions!",
+      image:
+        "https://lh7-rt.googleusercontent.com/docsz/AD_4nXcNFbsImBQ3y2IjHBuQge6ub_gvMHy5Gmv6A-PCzDGStQSmXq0f7fnYF04TMTlavmhAX5dsy3Bz3XrVaO6VLPK5lU7CSKFOR2g8udlhCzsoqDpPgjXh9cOx66bHtRPvLo1-c_Bq7Q?key=2W8eZpCKkz-n-CtGI6rZFUNp",
+      keywords: ["Checklist"],
+    },
+    {
+      name: "Roblox",
+      url: "https://cooper55555.github.io/RobloxLibrary/",
+      description: "Dive into Roblox games and info about that game!",
+      image:
+        "https://assets.telkomsel.com/public/2025-02/Serba-Serbi-Game-Roblox-Favorit-Anak-Jaman-Sekarang.jpg?VersionId=WgO11X.SaRD1R2umpzAMOCG6jnkJftFQ",
+      keywords: ["Information"],
+    },
+    {
+      name: "Valorant",
+      url: "https://cooper55555.github.io/ValorLibrary/",
+      description: "Get the latest Valorant agent stats and weapon info!",
+      image: "https://wallpapers.com/images/featured/valorant-agents-39zhmexxi0mmhhk9.jpg",
+      keywords: ["Information"],
+    },
+  ];
 
-// Get the search input from the HTML
-const searchInput = document.getElementById("search");
+  const app = document.getElementById("app");
+  const searchInput = document.getElementById("search");
+  const keywordSelect = document.getElementById("keywordFilter");
+  const filterBtn = document.getElementById("filterBtn");
 
-// Create the button container
-const container = document.createElement("div");
-container.className = "region-buttons-container";
+  const container = document.createElement("div");
+  container.className = "card-container";
+  app.appendChild(container);
 
-// Function to render buttons based on filter text
-function renderButtons(filter = "") {
-  container.innerHTML = ""; // clear existing buttons
-  const filteredLinks = links.filter(({ name }) =>
-    name.toLowerCase().includes(filter.toLowerCase())
-  );
-  filteredLinks.forEach(({ name, url }) => {
-    const button = document.createElement("button");
-    button.className = "region-button";
-    button.textContent = name;
-    button.addEventListener("click", () => {
-      if (url) window.location.href = url;
+  let appliedKeyword = "";
+
+  function renderCards(searchTerm = "", keyword = "") {
+    container.innerHTML = "";
+
+    const filtered = links.filter((link) => {
+      const matchSearch = link.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchKeyword = keyword === "" || link.keywords.includes(keyword);
+      return matchSearch && matchKeyword;
     });
-    container.appendChild(button);
+
+    if (filtered.length === 0) {
+      container.innerHTML = "<p>No results found.</p>";
+      return;
+    }
+
+    filtered.forEach(({ name, url, description, image }) => {
+      const card = document.createElement("div");
+      card.className = "game-card";
+      card.innerHTML = `
+        <img src="${image}" alt="${name}" class="game-image" style="width:100%; max-width:300px; border-radius:8px"/>
+        <h2 class="game-title">${name}</h2>
+        <p class="game-description">${description}</p>
+        <a href="${url}" target="_blank" class="game-link">Visit ${name}</a>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  renderCards();
+
+  searchInput.addEventListener("input", () => {
+    renderCards(searchInput.value, "");
   });
-}
 
-// Initial render of all buttons
-renderButtons();
-
-// Listen for search input and update buttons in real-time
-searchInput.addEventListener("input", (e) => {
-  renderButtons(e.target.value);
+  filterBtn.addEventListener("click", () => {
+    appliedKeyword = keywordSelect.value;
+    renderCards(searchInput.value, appliedKeyword);
+  });
 });
 
-// Append buttons container to app (search bar is already in HTML)
-app.appendChild(container);
-
-// Helper function to toggle visibility of a section by ID
+// Modal toggle and dark mode logic remain unchanged
 function toggleSectionVisibility(id, show) {
   const el = document.getElementById(id);
   if (!el) return;
   el.style.display = show ? "" : "none";
 }
 
-// Modal toggle function
 function toggleTCGSettingsModal() {
   const modal = document.getElementById("settings-modal-tcg");
   modal.classList.toggle("hidden");
 
   if (!modal.classList.contains("hidden")) {
-    // Sync toggles or initialize modal state here
     syncToggleWithDarkMode();
   }
 }
 
-// Grab the dark mode toggle switch inside the modal
 const darkModeToggleModal = document.getElementById("darkModeToggleModal");
 
-// Initialize toggle based on saved preference
 const savedDarkMode = localStorage.getItem("darkMode") === "enabled";
 if (savedDarkMode) {
   document.body.classList.add("dark-mode");
@@ -86,7 +126,6 @@ if (savedDarkMode) {
   if (darkModeToggleModal) darkModeToggleModal.checked = false;
 }
 
-// Listen for changes on the modal toggle and update dark mode accordingly
 if (darkModeToggleModal) {
   darkModeToggleModal.addEventListener("change", () => {
     if (darkModeToggleModal.checked) {
@@ -99,7 +138,6 @@ if (darkModeToggleModal) {
   });
 }
 
-// Update modal toggle when opening modal to stay in sync
 function syncToggleWithDarkMode() {
   if (darkModeToggleModal) {
     darkModeToggleModal.checked = document.body.classList.contains("dark-mode");
