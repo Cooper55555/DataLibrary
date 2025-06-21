@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
       image: "https://wallpapers.com/images/featured/valorant-agents-39zhmexxi0mmhhk9.jpg",
       keywords: ["Information"],
     },
+    {
+      name: "Minecraft",
+      url: "https://cooper55555.github.io/MineLibrary/",
+      description: "Discover all the minecraft profiles and servers!",
+      image: "https://staticg.sportskeeda.com/editor/2025/01/8827f-17376979472538-1920.jpg?w=640",
+      keywords: ["Information"],
+    },
   ];
 
   const app = document.getElementById("app");
