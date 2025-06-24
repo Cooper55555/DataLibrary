@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataLibrary Timeline</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="timeline.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+  <nav id="main-navbar" class="navbar">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-container">
+        <i class="fas fa-database logo-icon"></i>
+        <span class="logo-text">DataLibrary</span>
+      </div>
+    </a>
+    <div class="navbar-links">
+      <a href="index.html" class="nav-btn">
+        <i class="fas fa-home"></i>
+        <span>HOME</span>
+      </a>
+      <a href="timeline.html" class="nav-btn active">
+        <i class="fas fa-clock"></i>
+        <span>TIMELINE</span>
+      </a>
+      <a href="#team" class="nav-btn">
+        <i class="fas fa-users"></i>
+        <span>TEAM</span>
+      </a>
+    </div>
+  </nav>
+
+  <section class="starsbackground">
+    <div id="stars1"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </section>
+
+  <div class="settings-container">
+    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+  </div>
+
+  <section class="timeline-section">
+    <div class="hero-section">
+      <h1 class="timeline-title">Our Journey</h1>
+      <p class="hero-subtitle">Milestones that shaped DataLibrary's evolution</p>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      
+      <div class="timeline-item completed">
+        <div class="timeline-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">7-6-2025</div>
+          <h3 class="timeline-title-text">DataLibrary Release</h3>
+          <p class="timeline-description">The official launch of DataLibrary.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item completed">
+        <div class="timeline-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">11-6-2025</div>
+          <h3 class="timeline-title-text">First Website Made</h3>
+          <p class="timeline-description">Development and deployment of our project.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item completed">
+        <div class="timeline-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">16-6-2025</div>
+          <h3 class="timeline-title-text">DataLibrary Team</h3>
+        </div>
+      </div>
+
+      <div class="timeline-item center-milestone">
+        <div class="timeline-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">Present</div>
+          <h3 class="timeline-title-text">DataLibrary Today</h3>
+        </div>
+      </div>
+
+      <div class="timeline-item upcoming">
+        <div class="timeline-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">?-?-????</div>
+          <h3 class="timeline-title-text">Big Partnership</h3>
+        </div>
+      </div>
+
+      <div class="timeline-item upcoming">
+        <div class="timeline-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="timeline-connector"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">?-?-????</div>
+          <h3 class="timeline-title-text">Big Reputation</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="floating-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+  </section>
+
+  <div id="settings-modal-tcg" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button" onclick="toggleTCGSettingsModal()">×</span>
+      <h2>Settings</h2>
+
+      <div class="switch-container">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggleModal" />
+          <span class="slider"></span>
+        </label>
+        <span>Dark Mode</span>
+      </div>
+
+      <div class="social-button-container">
+        <a href="https://discord.gg/t5BGDzzSXg" target="_blank" class="social-button discord">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://median.co/share/jrkxbe#apk" target="_blank" class="social-button android">
+          <i class="fab fa-android"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright-container">
+    <h5>© 2025 DataLibrary. This website has been made by the entire DataLibrary team.</h5>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

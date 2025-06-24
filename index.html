@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DataLibrary Home</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="timeline.css" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -12,24 +13,44 @@
 </head>
 <body>
         <nav id="main-navbar" class="navbar">
-      <a class="navbar-logo">DataLibrary</a>
+      <a class="navbar-logo">
+        <div class="logo-container">
+          <i class="fas fa-database logo-icon"></i>
+          <span class="logo-text">DataLibrary</span>
+        </div>
+      </a>
       <div class="navbar-links">
-        <button class="nav-btn active" data-section="first-section">HOME</button>
-        <button class="nav-btn" data-section="second-section">TEAM</button>
+        <button class="nav-btn active" data-section="first-section">
+          <i class="fas fa-home"></i>
+          <span>HOME</span>
+        </button>
+        <button class="nav-btn" data-section="second-section">
+          <i class="fas fa-users"></i>
+          <span>TEAM</span>
+        </button>
+        <button class="nav-btn" data-section="timeline-section">
+          <i class="fas fa-clock"></i>
+          <span>TIMELINE</span>
+        </button>
+        <button class="nav-btn" data-section="third-section">
+          <i class="fas fa-info-circle"></i>
+          <span>ABOUT</span>
+        </button>
+        <div class="navbar-settings">
+          <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+        </div>
       </div>
     </nav>
-  <section class="starsbackground">
-    <div id="stars1"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>
-  </section>
 <div id="first-section" class="section">
-  <div class="settings-container">
-    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+  <div class="hero-section">
+    <h1 class="main-title">The Websites Of DataLibrary</h1>
+    <p class="hero-subtitle">Discover amazing projects and tools built by our team</p>
   </div>
-  <h1>The Websites Of DataLibrary</h1>
     <div class="search-bar">
-    <input type="text" id="search" placeholder="Search..." />
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="search" placeholder="Search amazing projects..." />
+    </div>
     </div>
 <div class="filter-container">
       <select id="keywordFilter">
@@ -37,7 +58,10 @@
     <option value="Information">Information</option>
     <option value="Checklist">Checklist</option>
   </select>
-    <button id="filterBtn">Filter</button>
+    <button id="filterBtn">
+      <i class="fas fa-filter"></i>
+      <span>Filter</span>
+    </button>
     </div>
   <div class="home-container">
   <main id="app"></main>
@@ -45,10 +69,10 @@
 </div>
 
 <div id="second-section" class="section" style="display:none;">
-  <div class="settings-container">
-    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+  <div class="hero-section">
+    <h1 class="main-title">Meet the Team</h1>
+    <p class="hero-subtitle">The talented developers behind DataLibrary</p>
   </div>
-  <h1>Meet the Team</h1>
 
   <div class="team-container">
     <div class="team-member">
@@ -78,68 +102,131 @@
     </div>
   </div>
 
-  <!-- Contact section inside Team -->
   <div class="team-contact">
     <h2>Contact Us</h2>
     <p>Got questions, feedback, or just want to connect with us?</p>
     <p>Click the button below to reach us directly through our Discord server.</p>
     <a href="https://discord.gg/t5BGDzzSXg" target="_blank" class="discord-button">Join Our Discord</a>
   </div>
+</div>
 
-  <section class="timeline-web">
-    <div class="web-container">
-      <!-- Center node -->
-      <div class="center-node">DataLibrary</div>
+<div id="timeline-section" class="section" style="display:none;">
+  <section class="timeline-section">
+    <div class="hero-section">
+      <h1 class="timeline-title">Our Journey</h1>
+      <p class="hero-subtitle">Milestones that shaped DataLibrary's evolution</p>
+    </div>
 
-      <!-- Timeline nodes -->
-      <div class="web-node" style="--x: 120px; --y: -200px;">
-        <h3>7-6-2025</h3>
-        <p>DataLibrary Release</p>
+    <div class="timeline-container">
+      <div class="timeline-track">
+        <div class="timeline-progress">
+          <div class="timeline-progress-fill"></div>
+        </div>
+        
+        <div class="timeline-items">
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">7-6-2025</div>
+              <h3 class="timeline-title-text">DataLibrary Release</h3>
+              <p class="timeline-description">The official launch of DataLibrary.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">11-6-2025</div>
+              <h3 class="timeline-title-text">First Website Made</h3>
+              <p class="timeline-description">Development and deployment of our project.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">16-6-2025</div>
+              <h3 class="timeline-title-text">DataLibrary Team</h3>
+              <p class="timeline-description">Official formation of the DataLibrary development team.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item center-milestone">
+            <div class="timeline-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">Present</div>
+              <h3 class="timeline-title-text">DataLibrary Today</h3>
+              <p class="timeline-description">Currently developing..</p>
+            </div>
+          </div>
+
+          <div class="timeline-item upcoming">
+            <div class="timeline-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">?-?-????</div>
+              <h3 class="timeline-title-text">Big Partnership</h3>
+            </div>
+          </div>
+
+          <div class="timeline-item upcoming">
+            <div class="timeline-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">?-?-????</div>
+              <h3 class="timeline-title-text">Big Reputation</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-footer">
+          <div class="timeline-footer-title">The Journey Continues</div>
+        </div>
       </div>
+    </div>
 
-      <div class="web-node upcoming" style="--x: 210px; --y: -50px;">
-        <h3>?-?-????</h3>
-        <p>Big Reputation</p>
-      </div>
-
-      <div class="web-node" style="--x: 230px; --y: 120px;">
-        <h3>11-6-2025</h3>
-        <p>First Website Made</p>
-      </div>
-
-      <div class="web-node upcoming" style="--x: -190px; --y: -140px;">
-        <h3>?-?-????</h3>
-        <p>Big Partnership</p>
-      </div>
-
-      <div class="web-node" style="--x: -210px; --y: 110px;">
-        <h3>16-6-2025</h3>
-        <p>DataLibrary Team</p>
-      </div>
-
-      <!-- SVG lines connecting nodes -->
-      <svg class="web-lines" width="600" height="600" xmlns="http://www.w3.org/2000/svg">
-        <!-- Lines from center to nodes -->
-        <line x1="300" y1="300" x2="420" y2="100" />
-        <line x1="300" y1="300" x2="510" y2="250" />
-        <line x1="300" y1="300" x2="530" y2="420" />
-        <line x1="300" y1="300" x2="110" y2="160" />
-        <line x1="300" y1="300" x2="90" y2="410" />
-      </svg>
+    <div class="floating-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
     </div>
   </section>
+</div>
 
-<section class="timeline-mobile">
-  <div class="mobile-node">7-6-2025<br /><small>DataLibrary Release</small></div>
-  <div class="mobile-node">11-6-2025<br /><small>First Website Made</small></div>
-  <div class="mobile-node">16-6-2025<br /><small>DataLibrary Team</small></div>
+<div id="third-section" class="section" style="display:none;">
+  <div class="hero-section">
+    <h1 class="main-title">About DataLibrary</h1>
+    <p class="hero-subtitle">Learn more about our mission and vision</p>
+  </div>
 
-  <div class="mobile-node center-node">DataLibrary</div>
-
-  <div class="mobile-node upcoming">?-?-????<br /><small>Big Partnership</small></div>
-  <div class="mobile-node upcoming">?-?-????<br /><small>Big Reputation</small></div>
-</section>
-
+  <div class="coming-soon-container">
+    <div class="coming-soon-card">
+      <div class="coming-soon-icon">
+        <i class="fas fa-hammer"></i>
+      </div>
+      <h2>Coming Soon</h2>
+      <p>This section is currently under development. Check back later for exciting updates!</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <span class="progress-text">In Development...</span>
+    </div>
+  </div>
 </div>
 
 <div id="settings-modal-tcg" class="modal hidden">

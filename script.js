@@ -1,29 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === Tab switching logic ===
   const navButtons = document.querySelectorAll(".nav-btn");
   const sections = document.querySelectorAll(".section");
 
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      // Remove active class from all buttons
       navButtons.forEach((b) => b.classList.remove("active"));
-      // Add active class to clicked button
       btn.classList.add("active");
 
       const sectionToShow = btn.dataset.section;
 
-      // Show the right section, hide others
       sections.forEach((section) => {
         if (section.id === sectionToShow) {
           section.style.display = "";
+          section.classList.add("section-active");
         } else {
           section.style.display = "none";
+          section.classList.remove("section-active");
         }
       });
+
+      if (sectionToShow === "third-section") {
+      }
     });
   });
 
-  // === Your existing links data and filter rendering ===
   const links = [
     {
       name: "Pokemon",
@@ -82,14 +82,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    filtered.forEach(({ name, url, description, image }) => {
+    filtered.forEach(({ name, url, description, image }, index) => {
       const card = document.createElement("div");
       card.className = "game-card";
+      card.style.animationDelay = `${index * 0.1}s`;
       card.innerHTML = `
+        <div class="card-glow"></div>
         <img src="${image}" alt="${name}" class="game-image" style="width:100%; max-width:300px; border-radius:8px"/>
         <h2 class="game-title">${name}</h2>
         <p class="game-description">${description}</p>
-        <a href="${url}" target="_blank" class="game-link">Visit ${name}</a>
+        <a href="${url}" target="_blank" class="game-link">
+          <span>Visit ${name}</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
       `;
       container.appendChild(card);
     });
@@ -104,6 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
   filterBtn.addEventListener("click", () => {
     appliedKeyword = keywordSelect.value;
     renderCards(searchInput.value, appliedKeyword);
+  });
+
+  // === Stats Animation ===
+  function animateStats() {
+    // Removed since about section is now "coming soon" for the admin/owner to modify if wanted!
+  }
+
+  // === Add floating animation to team members ===
+  const teamMembers = document.querySelectorAll('.team-member');
+  teamMembers.forEach((member, index) => {
+    member.style.animationDelay = `${index * 0.2}s`;
   });
 });
 
