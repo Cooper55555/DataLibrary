@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World of Tanks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style-wot.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="icon" href="DataLibrary.ico" type="image/x-icon">
+    <link rel="icon" href="https://cdn.discordapp.com/avatars/1339214670099382382/7e0935121ed73e51d4cf8ab3442feb4c.webp?size=100" type="image/x-icon">
+</head>
+<body>
+  <header class="header">
+    <!-- Left: Logo -->
+    <div class="header-left-edge">
+      <a href="https://cooper55555.github.io/DataLibrary/" class="navbar-logo">
+        <div class="logo-container">
+          <i class="fas fa-database logo-icon"></i>
+          <span class="logo-text">DataLibrary</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Center: Title + section label -->
+
+    <!-- Right: Navigation -->
+    <nav id="main-navbar" class="navbar">
+      <div class="navbar-links">
+        <button class="nav-btn active" data-section="tanks-section">
+          <i class="fas fa-solid fa-shield-halved"></i>
+          <span>Tanks</span>
+        </button>
+        <button class="nav-btn" data-section="maps-section">
+          <i class="fas fa-map"></i>
+          <span>Maps</span>
+        </button>
+        <div class="navbar-settings">
+          <i class="fas fa-cog settings-icon" data-section="settings-section"></i>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- === Tanks Section === -->
+    <section id="tanks-section" class="content-section active">
+      <div id="filters">
+        <button id="reset-filters" class="reset-button">Reset filters</button>
+
+        <input type="text" id="search-name" placeholder="Search tank by name...">
+        <select id="filter-nation">
+          <option value="">All Nations</option>
+        </select>
+        <select id="filter-type">
+          <option value="">All Classes</option>
+        </select>
+        <select id="filter-tier">
+          <option value="">All Tiers</option>
+        </select>
+      </div>
+
+      <div id="tanks-container" class="card-grid"></div>
+    </section>
+
+    <!-- === Maps Section (Placeholder) === -->
+    <section id="maps-section" class="content-section hidden">
+         <div class="coming-soon-container">
+    <div class="coming-soon-card">
+      <div class="coming-soon-icon">
+        <i class="fas fa-hammer"></i>
+      </div>
+      <h2>Coming Soon</h2>
+      <p>This section is currently under development. Check back later for exciting updates!</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <span class="progress-text">In Development...</span>
+    </div>
+  </div>
+</div>
+    </section>
+  </main>
+
+  <!-- === Footer === -->
+  <div class="copyright-container">
+    <p>© 2025 DataLibrary. This website has been made by Bravo and Lxzy.</p>
+  </div>
+
+  <!-- === Tank Overlay === -->
+  <div id="tank-overlay" class="hidden">
+    <div class="overlay-content">
+      <button id="overlay-close">×</button>
+      <div id="overlay-body" class="">
+        <div id="tank-info"></div>
+        <div class="modalextra">
+          <!-- Module Tree -->
+          <div id="modules-tree"></div>
+
+          <!-- Module Details -->
+          <div id="module-details">
+            <button id="module-close">×</button>
+            <div id="module-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === Settings Overlay === -->
+  <div id="settings-overlay" class="hidden">
+    <div class="overlay-content settings-overlay-content">
+      <button id="settings-close">×</button>
+      <h2>Settings</h2>
+
+      <label class="switch-label">
+        <label class="switch">
+          <input type="checkbox" id="dark-mode-toggle">
+          <span class="slider round"></span>
+        </label>
+        <span>Dark Mode</span>
+      </label>
+
+      <div class="settings-links">
+        <a href="https://discord.gg/t5BGDzzSXg" target="_blank" class="icon-button">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://median.co/share/yamxpl#apk" target="_blank" class="icon-button">
+          <i class="fab fa-android"></i>
+        </a>
+      </div>
+                    <div class="counter-container">
+        <h5 class="countertext">Your Visitor Counter:</h5>
+        <div id="visitor-count">0</div>
+    </div>
+    </div>
+  </div>
+
+  <!-- === Loading Screen === -->
+  <div id="loading-backdrop"></div>
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- === Main Script === -->
+  <script src="../js/script-wot.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <link rel="stylesheet" href="../css/style-minecraft.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+      <link rel="icon" href="https://cdn.discordapp.com/avatars/1339214670099382382/7e0935121ed73e51d4cf8ab3442feb4c.webp?size=100" type="image/x-icon">
+</head>
+<body>
+
+          <nav id="main-navbar" class="navbar">
+      <a href="https://cooper55555.github.io/DataLibrary/" class="navbar-logo" style="text-decoration: none;">
+        <div class="logo-container">
+          <i class="fas fa-database logo-icon"></i>
+          <span class="logo-text">DataLibrary</span>
+        </div>
+      </a>
+      <div class="navbar-links">
+        <button class="nav-btn active" data-section="first-section">
+          <i class="fas fa-solid fa-user"></i>
+          <span>PROFILE</span>
+        </button>
+        <button class="nav-btn" data-section="second-section">
+          <i class="fas fa-solid fa-mug-hot"></i>
+          <span>SERVERS</span>
+        </button>
+        <div class="navbar-settings">
+          <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+        </div>
+      </div>
+    </nav>
+
+<div id="first-section" class="section">
+  <h1 class="main-title">Minecraft Profile</h1>
+  <div class="container-unique">
+  <input type="text" id="username" class="input-unique" placeholder="Enter Minecraft Username.." />
+  <button class="button-unique" onclick="lookupPlayer()">Search</button>
+
+  <div id="result" class="result-unique">
+    <div class="grid-unique">
+      <div class="skin-section-unique">
+        <img id="skin" alt="Minecraft Skin" class="skin-img-unique" />
+        <a id="downloadSkinBtn" download="skin.png" class="msl-download-button">Download Skin</a>
+      </div>
+
+      <div class="info-section-unique">
+        <p><strong>Username:</strong> <span id="name" class="name-unique"></span></p>
+
+        <div class="extra-info-unique" id="extraInfo"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <div id="second-section" class="section" style="display:none;">
+    <h1 class="main-title">Minecraft Servers</h1>
+  <div class="msl-wrapper">
+
+  <div class="msl-search">
+    <input type="text" placeholder="Search For A Server.." id="msl-search-input">
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">SkyBlock Paradise</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> play.skyblockparadise.net</p>
+      <p class="msl-server-description">The ultimate skyblock experience with custom islands, quests, and community events.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 200</p>
+      <button class="msl-copy-button" data-ip="play.skyblockparadise.net">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">Pixel PvP</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> play.pixelpvp.net</p>
+      <p class="msl-server-description">Fast-paced PvP battles with kits, leaderboards, and tournaments.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 100</p>
+      <button class="msl-copy-button" data-ip="play.pixelpvp.net">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">Survival Haven</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> survival.havenmc.com</p>
+      <p class="msl-server-description">Chill vanilla survival with a friendly community and no griefing.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 150</p>
+      <button class="msl-copy-button" data-ip="survival.havenmc.com">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">Creative Kingdoms</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> build.creativekingdoms.net</p>
+      <p class="msl-server-description">Massive creative plots with worldedit support and themed contests.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 80</p>
+      <button class="msl-copy-button" data-ip="build.creativekingdoms.net">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">Dungeon Realms</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> dungeons.realmz.net</p>
+      <p class="msl-server-description">RPG dungeon crawler with classes, bosses, and gear upgrades.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 120</p>
+      <button class="msl-copy-button" data-ip="dungeons.realmz.net">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">Redstone Labs</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> labs.redstonecraft.org</p>
+      <p class="msl-server-description">A technical server focused on redstone machines, logic, and tutorials.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 60</p>
+      <button class="msl-copy-button" data-ip="labs.redstonecraft.org">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">SkyWars Blitz</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> blitz.skywarsarena.com</p>
+      <p class="msl-server-description">Quick and chaotic SkyWars with random loot and instant matches.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 100</p>
+      <button class="msl-copy-button" data-ip="blitz.skywarsarena.com">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">FarmLife SMP</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> play.farmlife.net</p>
+      <p class="msl-server-description">Grow crops, raise animals, and build your own rural paradise!</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 75</p>
+      <button class="msl-copy-button" data-ip="play.farmlife.net">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">Parkour Legends</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> jump.parkourlegends.org</p>
+      <p class="msl-server-description">Challenge yourself with hundreds of parkour levels and custom leaderboards.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 90</p>
+      <button class="msl-copy-button" data-ip="jump.parkourlegends.org">Copy IP</button>
+    </div>
+  </div>
+
+  <div class="msl-server-card">
+    <div class="msl-server-details">
+      <h2 class="msl-server-name">Prison Breakout</h2>
+      <p class="msl-server-ip"><strong>IP:</strong> mine.prisonbreak.net</p>
+      <p class="msl-server-description">Classic prison server with mining ranks, gangs, and economy systems.</p>
+    </div>
+    <div class="msl-server-status">
+      <p class="msl-server-players">🌐 Maximum Players Online: 110</p>
+      <button class="msl-copy-button" data-ip="mine.prisonbreak.net">Copy IP</button>
+    </div>
+  </div>
+
+  </div>
+</div>
+</div>
+  
+    <div id="settings-modal-tcg" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button" onclick="toggleTCGSettingsModal()">×</span>
+    <h2>Settings</h2>
+
+    <div class="switch-container">
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="darkModeToggleModal"
+        />
+        <span class="slider"></span>
+      </label>
+      <span>Dark Mode</span>
+    </div>
+
+    <div class="social-button-container">
+      <a
+        href="https://discord.gg/t5BGDzzSXg"
+        target="_blank"
+        class="social-button discord"
+        ><i class="fab fa-discord"></i
+      ></a>
+      <a
+        href="https://median.co/share/nokwrp#apk"
+        target="_blank"
+        class="social-button android"
+        ><i class="fab fa-android"></i
+      ></a>
+    </div>
+              <div class="counter-container">
+        <h5 class="countertext">Your Visitor Counter:</h5>
+        <div id="visitor-count">0</div>
+    </div>
+  </div>
+</div>
+
+    <div class="copyright-container">
+    <h5>© 2025 DataLibrary. This website has been made by Cooper.</h5>
+  </div>
+    <script src="../js/script-minecraft.js"></script>
+</body>
+</html>

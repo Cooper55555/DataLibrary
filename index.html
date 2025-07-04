@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataLibrary Home</title>
+  <link rel="stylesheet" href="css/style-main.css" />
+  <link rel="stylesheet" href="css/timeline-main.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="icon" href="https://cdn.discordapp.com/avatars/1339214670099382382/7e0935121ed73e51d4cf8ab3442feb4c.webp?size=100" type="image/x-icon">
+</head>
+<body>
+        <nav id="main-navbar" class="navbar">
+      <a class="navbar-logo">
+        <div class="logo-container">
+          <i class="fas fa-database logo-icon"></i>
+          <span class="logo-text">DataLibrary</span>
+        </div>
+      </a>
+      <div class="navbar-links">
+        <button class="nav-btn active" data-section="first-section">
+          <i class="fas fa-home"></i>
+          <span>HOME</span>
+        </button>
+        <button class="nav-btn" data-section="second-section">
+          <i class="fas fa-users"></i>
+          <span>TEAM</span>
+        </button>
+        <button class="nav-btn" data-section="timeline-section">
+          <i class="fas fa-clock"></i>
+          <span>TIMELINE</span>
+        </button>
+        <button class="nav-btn" data-section="third-section">
+          <i class="fas fa-solid fa-robot"></i>
+          <span>BOT</span>
+        </button>
+        <button class="nav-btn" data-section="fourth-section">
+          <i class="fas fa-info-circle"></i>
+          <span>ABOUT</span>
+        </button>
+        <div class="navbar-settings">
+          <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+        </div>
+      </div>
+    </nav>
+<div id="first-section" class="section">
+  <div class="hero-section">
+    <h1 class="main-title">The Websites Of DataLibrary</h1>
+    <p class="hero-subtitle">Discover amazing projects and tools built by our team</p>
+  </div>
+    <div class="search-bar">
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="search" placeholder="Search amazing projects..." />
+    </div>
+    </div>
+<div class="filter-container">
+      <select id="keywordFilter">
+    <option value="">All Keywords</option>
+    <option value="Information">Information</option>
+    <option value="Checklist">Checklist</option>
+  </select>
+    <button id="filterBtn">
+      <i class="fas fa-filter"></i>
+      <span>Filter</span>
+    </button>
+    </div>
+  <div class="home-container">
+  <main id="app"></main>
+  </div>
+</div>
+
+<div id="second-section" class="section" style="display:none;">
+
+<div class="team-wrapper">
+
+  <!-- ====== Developers ====== -->
+         <div class="hero-section">
+    <h1 class="main-title">Meet The Developers</h1>
+    <p class="hero-subtitle">The talented developers behind DataLibrary</p>
+  </div>
+  <div class="team-section">
+    <!-- Full Stack Devs -->
+    <div class="team-member" onclick="openTeamModal('lxzy')">
+      <img src="https://cdn.discordapp.com/avatars/1233363061440512011/32ef183dcb2201179f442c77e8b8b7d8.webp?size=80" alt="Dev 4" />
+      <h3>Lxzy</h3>
+      <p>Full Stack Dev</p>
+      <div class="click-hint">Click for more info</div>
+    </div>
+    <div class="team-member" onclick="openTeamModal('cooper')">
+      <img src="https://cdn.discordapp.com/avatars/1262336556966871101/702dde19270f61624786d9b89715bc48.webp?size=80" alt="Dev 1" />
+      <h3>Cooper</h3>
+      <p>Full Stack Dev</p>
+      <div class="click-hint">Click for more info</div>
+    </div>
+    <div class="team-member" onclick="openTeamModal('bravo')">
+      <img src="https://cdn.discordapp.com/avatars/767630233926762526/db41dcad4626d6448477887e4b7f39d1.webp?size=80" alt="Dev 4" />
+      <h3>Bravo</h3>
+      <p>Full Stack Dev</p>
+      <div class="click-hint">Click for more info</div>
+    </div>
+
+    <!-- Frontend Devs -->
+    <div class="team-member" onclick="openTeamModal('ampired')">
+      <img src="https://cdn.discordapp.com/avatars/954342432416358420/8669e174f4e7595868723679806ad5e4.webp?size=80" alt="Dev 2" />
+      <h3>Ampired</h3>
+      <p>Frontend Dev</p>
+      <div class="click-hint">Click for more info</div>
+    </div>
+    <div class="team-member" onclick="openTeamModal('cpu')">
+      <img src="https://cdn.discordapp.com/avatars/1173038204140650588/e9f3e7b938493b28477962783c3c6f0a.webp?size=80" alt="Dev 4" />
+      <h3>Cpu</h3>
+      <p>Frontend Dev</p>
+      <div class="click-hint">Click for more info</div>
+    </div>
+    <div class="team-member" onclick="openTeamModal('pepper')">
+      <img src="https://cdn.discordapp.com/avatars/779231982470168597/40da386e0ad70596edfc3c14cc0dcc8a.webp?size=80" alt="Dev 3" />
+      <h3>Pepper</h3>
+      <p>Frontend Dev</p>
+      <div class="click-hint">Click for more info</div>
+    </div>
+    <div class="team-member" onclick="openTeamModal('sugar')">
+      <img src="https://cdn.discordapp.com/avatars/1383395562333929482/bba4a5cc613f32736a89b9902cc408bd.webp?size=80" alt="Dev 4" />
+      <h3>Sugar</h3>
+      <p>Frontend Dev</p>
+      <div class="click-hint">Click for more info</div>
+    </div>
+  </div>
+
+  <div class="hero-section">
+    <h1 class="main-title">Meet The Editors</h1>
+    <p class="hero-subtitle">The talented Editors behind the YouTube channel</p>
+  </div>
+  <div class="team-section">
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/1332785631331356784/4e5c286f9ed2d0ca8bdb55a7c259a78b.webp?size=80" alt="Editor 1" />
+      <h3>Mr.bobby</h3>
+      <p>YouTube Editor</p>
+    </div>
+  </div>
+
+  <!-- ====== Moderators ====== -->
+         <div class="hero-section">
+    <h1 class="main-title">Meet The Moderators</h1>
+    <p class="hero-subtitle">The talented moderators behind the Discord server</p>
+  </div>
+  <div class="team-section">
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/1233442943902158901/a7b13fafaa516cbd15ad0c7d12ae10b0.webp?size=80" alt="Mod 1" />
+      <h3>Eliahaloun</h3>
+      <p>Discord Moderator</p>
+    </div>
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/801155377404051536/e8edc9a0b953246f7247f75d70a1e4ca.webp?size=80" alt="Mod 2" />
+      <h3>Mastariox</h3>
+      <p>Discord Moderator</p>
+    </div>
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/206091221440004096/beec7f2c2ea3d9a55b62239bb63aaa5f.webp?size=80" alt="Mod 3" />
+      <h3>Swlwwchase</h3>
+      <p>Discord Moderator</p>
+    </div>
+  </div>
+
+  <!-- ====== Helpers ====== -->
+  <div class="hero-section">
+    <h1 class="main-title">Meet The Helpers</h1>
+    <p class="hero-subtitle">The talented helpers behind the information</p>
+  </div>
+  <div class="team-section">
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/1141527398186233966/3de68138a3c265b2ae56f174c1d57683.webp?size=80" alt="Helper 1" />
+      <h3>RoadTo10og</h3>
+      <p>Info Helper</p>
+    </div>
+    <div class="team-member">
+      <img src="https://i.pinimg.com/236x/51/85/89/5185890748bea59f5ff6d3b7e8d713ff.jpg" alt="Helper 1" />
+      <h3>Harry</h3>
+      <p>Info Helper</p>
+    </div>
+    <div class="team-member">
+      <img src="https://cdn.discordapp.com/avatars/884312741618262016/3017a3e03e45df97d24d4974b0ce6939.webp?size=80" alt="Helper 3" />
+      <h3>Zeke</h3>
+      <p>Info Helper</p>
+    </div>
+  </div>
+
+</div>
+
+  <div class="team-contact">
+    <h2>Contact Us</h2>
+    <p>Got questions, feedback, or just want to connect with us?</p>
+    <p>Click the button below to reach us directly through our Discord server.</p>
+    <a href="https://discord.gg/t5BGDzzSXg" target="_blank" class="discord-button">Join Our Discord</a>
+  </div>
+</div>
+
+<div id="timeline-section" class="section" style="display:none;">
+  <section class="timeline-section">
+    <div class="hero-section">
+      <h1 class="main-title">Our Journey</h1>
+      <p class="hero-subtitle">Milestones that shaped DataLibrary's evolution</p>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-track">
+        <div class="timeline-progress">
+          <div class="timeline-progress-fill"></div>
+        </div>
+        
+        <div class="timeline-items">
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">7-6-2025</div>
+              <h3 class="timeline-title-text">DataLibrary Release</h3>
+              <p class="timeline-description">The official launch of DataLibrary.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">11-6-2025</div>
+              <h3 class="timeline-title-text">First Website Made</h3>
+              <p class="timeline-description">Development and deployment of our project.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item completed">
+            <div class="timeline-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">16-6-2025</div>
+              <h3 class="timeline-title-text">DataLibrary Team</h3>
+              <p class="timeline-description">Official formation of the DataLibrary development team.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item center-milestone">
+            <div class="timeline-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">Present</div>
+              <h3 class="timeline-title-text">DataLibrary Today</h3>
+              <p class="timeline-description">Currently developing..</p>
+            </div>
+          </div>
+
+          <div class="timeline-item upcoming">
+            <div class="timeline-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">?-?-????</div>
+              <h3 class="timeline-title-text">Big Partnership</h3>
+            </div>
+          </div>
+
+          <div class="timeline-item upcoming">
+            <div class="timeline-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-date">?-?-????</div>
+              <h3 class="timeline-title-text">Big Reputation</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-footer">
+          <div class="timeline-footer-title">The Journey Continues</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="third-section" class="section" style="display:none;">
+  <div class="hero-section">
+    <h1 class="main-title">DataLibrary Discord Bot</h1>
+    <p class="hero-subtitle">Enhance your Discord server with powerful features</p>
+  </div>
+
+  <div class="bot-container">
+    <div class="bot-main">
+      <div class="bot-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <h2>DataLibrary Bot</h2>
+      <p>A powerful Discord bot with essential server management features</p>
+      
+      <a href="https://discord.com/oauth2/authorize?client_id=1339214670099382382&permissions=8&integration_type=0&scope=bot" class="invite-button">
+        <i class="fab fa-discord"></i>
+        <span>Invite Bot</span>
+      </a>
+    </div>
+
+    <div class="features-list">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-ticket-alt"></i>
+        </div>
+        <div class="feature-text">
+          <h3>Ticket System</h3>
+          <p>Professional support ticket management</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-wave-square"></i>
+        </div>
+        <div class="feature-text">
+          <h3>Welcome Messages</h3>
+          <p>Customizable greetings for new members</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-smile"></i>
+        </div>
+        <div class="feature-text">
+          <h3>Reaction Roles</h3>
+          <p>Self-assignable roles with emoji reactions</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-solid fa-book"></i>
+        </div>
+        <div class="feature-text">
+          <h3>Possible Commands</h3>
+          <p>-testwelcome</p>
+          <p>-ticketcreate</p>
+          <p>-reactionrole</p>
+          <p>-rules</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-solid fa-scale-balanced"></i>
+        </div>
+        <div class="feature-text">
+          <h3>Command Rules</h3>
+          <p>You need to put the basic DataLibrary bot role above the "Member" role to make everything work.</p>
+          <br>
+          <p>If you want to make the ticket system work and be able to see the tickets then give yourself the "Manager" role.</p>
+          <br>
+          <p>Make a role called "Announcements" and also a role called "Member" to let everything work smoothly.</p>
+          <br>
+          <p>Do not forget to make a channel called "┆👋┆welcome" if you want the welcome message to work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="fourth-section" class="section" style="display:none;">
+  <div class="hero-section">
+    <h1 class="main-title">About DataLibrary</h1>
+    <p class="hero-subtitle">Learn more about our mission and vision</p>
+  </div>
+
+  <div class="coming-soon-container">
+    <div class="coming-soon-card">
+      <div class="coming-soon-icon">
+        <i class="fas fa-hammer"></i>
+      </div>
+      <h2>Coming Soon</h2>
+      <p>This section is currently under development. Check back later for exciting updates!</p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <span class="progress-text">In Development...</span>
+    </div>
+  </div>
+</div>
+
+<div id="team-modal" class="modal hidden">
+  <div class="modal-content team-modal-content">
+    <span class="close-button" onclick="closeTeamModal()">×</span>
+    <div class="team-profile">
+      <div class="team-profile-header">
+        <img id="modal-avatar" src="" alt="Profile Picture" />
+        <div class="team-profile-info">
+          <h2 id="modal-name"></h2>
+          <p id="modal-role"></p>
+        </div>
+      </div>
+      
+      <div class="team-profile-content">
+        <div class="profile-section">
+          <h3><i class="fas fa-user"></i> Bio</h3>
+          <p id="modal-bio">Bio coming soon... (update this yourself!)</p>
+        </div>
+        
+        <div class="profile-section">
+          <h3><i class="fas fa-gamepad"></i> Projects & Games</h3>
+          <div id="modal-projects" class="project-tags">
+            <span class="project-tag">Update your projects here</span>
+          </div>
+        </div>
+        
+        <div class="profile-section">
+          <h3><i class="fas fa-link"></i> Connect</h3>
+          <div id="modal-socials" class="social-links">
+            <a href="#" class="social-link discord"><i class="fab fa-discord"></i> Discord</a>
+            <a href="#" class="social-link github"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#" class="social-link project"><i class="fa-solid fa-code"></i> Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="settings-modal-tcg" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button" onclick="toggleTCGSettingsModal()">×</span>
+    <h2>Settings</h2>
+
+    <div class="switch-container">
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="darkModeToggleModal"
+        />
+        <span class="slider"></span>
+      </label>
+      <span>Dark Mode</span>
+    </div>
+
+    <div class="social-button-container">
+      <a
+        href="https://discord.gg/t5BGDzzSXg"
+        target="_blank"
+        class="social-button discord"
+        ><i class="fab fa-discord"></i
+      ></a>
+      <a
+        href="https://median.co/share/jrkxbe#apk"
+        target="_blank"
+        class="social-button android"
+        ><i class="fab fa-android"></i
+      ></a>
+    </div>
+          <div class="counter-container">
+        <h5 class="countertext">Your Visitor Counter:</h5>
+        <div id="visitor-count">0</div>
+    </div>
+  </div>
+</div>
+
+    <div class="copyright-container">
+    <h5>© 2025 DataLibrary. This website has been made by the entire DataLibrary team.</h5>
+  </div>
+
+  <script src="js/script-main.js"></script>
+  <script src="html/timeline-main.html"></script>
+</body>
+</html>
