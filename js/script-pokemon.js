@@ -76,7 +76,7 @@ function goHome() {
 
   app.innerHTML = `
     <nav class="navbar">
-      <a href="https://cooper55555.github.io/DataLibrary/" class="navbar-logo">
+      <a href="https://www.datalibrary.online/" class="navbar-logo">
         <div class="logo-container">
           <i class="fas fa-database logo-icon"></i>
           <span class="logo-text">DataLibrary</span>
