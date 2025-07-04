@@ -179,9 +179,9 @@ function createCard(selectedData) {
             <img src="${defaultItem.img}" alt="${defaultItem.name}" />
           </div>
           <div class="info">
-            <p><img src="svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${defaultItem.rarity}</span></p>
-            <p><img src="svg/tag.svg" alt="tag" /><span>${defaultItem.name}</span></p>
-            <p><img src="svg/damage-kinetic-1-svgrepo-com.svg" alt="damage" /><span>${defaultItem.damage}</span></p>
+            <p><img src="../svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${defaultItem.rarity}</span></p>
+            <p><img src="../svg/tag.svg" alt="tag" /><span>${defaultItem.name}</span></p>
+            <p><img src="../svg/damage-kinetic-1-svgrepo-com.svg" alt="damage" /><span>${defaultItem.damage}</span></p>
           </div>
          </div>
         `;
@@ -199,11 +199,11 @@ function createCard(selectedData) {
             <img src="${defaultItem.img}" alt="${defaultItem.name}" />
           </div>
           <div class="info">
-            <p><img src="svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${defaultItem.rarity}</span></p>
-            <p><img src="svg/tag.svg" alt="tag" /><span>${defaultItem.name}</span></p>
+            <p><img src="../svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${defaultItem.rarity}</span></p>
+            <p><img src="../svg/tag.svg" alt="tag" /><span>${defaultItem.name}</span></p>
             <div class="evolve-box">
-            <div><img src="svg/test-tube.png" alt="damage" /><span>${defaultItem.tube}</span> </div>
-            <div><img src="svg/Super_serum.png" alt="damage" /><span>${defaultItem.serum}</span> </div>
+            <div><img src="../svg/test-tube.png" alt="damage" /><span>${defaultItem.tube}</span> </div>
+            <div><img src="../svg/Super_serum.png" alt="damage" /><span>${defaultItem.serum}</span> </div>
             </div>
           </div>
          </div>
@@ -273,17 +273,17 @@ popup.appendChild(closeButton);
 
       if (selectedData == gunData) {
         parentCard.querySelector(".info").innerHTML = `
-    <p><img src="svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${item.rarity}</span></p>
-    <p><img src="svg/tag.svg" alt="tag" /><span>${item.name}</span></p>
-    <p><img src="svg/damage-kinetic-1-svgrepo-com.svg" alt="damage" /><span>${item.damage}</span></p>
+    <p><img src="../svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${item.rarity}</span></p>
+    <p><img src="../svg/tag.svg" alt="tag" /><span>${item.name}</span></p>
+    <p><img src="../svg/damage-kinetic-1-svgrepo-com.svg" alt="damage" /><span>${item.damage}</span></p>
   `;
       } else if (selectedData == chrData) {
         parentCard.querySelector(".info").innerHTML = `
-    <p><img src="svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${item.rarity}</span></p>
-    <p><img src="svg/tag.svg" alt="tag" /><span>${item.name}</span></p>
+    <p><img src="../svg/festive-shiny-christmas-ornament-xmas-svgrepo-com.svg" alt="rarity" /><span>${item.rarity}</span></p>
+    <p><img src="../svg/tag.svg" alt="tag" /><span>${item.name}</span></p>
     <div class="evolve-box">
-    <div><img src="svg/test-tube.png" alt="damage" /><span>${item.tube}</span> </div>
-    <div><img src="svg/Super_serum.png" alt="damage" /><span>${item.serum}</span> </div>
+    <div><img src="../svg/test-tube.png" alt="damage" /><span>${item.tube}</span> </div>
+    <div><img src="../svg/Super_serum.png" alt="damage" /><span>${item.serum}</span> </div>
     </div>
   `;
       }

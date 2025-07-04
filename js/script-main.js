@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const links = [
     {
       name: "Pokemon",
-      url: "html/index-pokemon.html",
+      url: "/html/index-pokemon.html",
       description: "Explore an big Pokémon checklist with loads of functions!",
       image:
         "https://lh7-rt.googleusercontent.com/docsz/AD_4nXcNFbsImBQ3y2IjHBuQge6ub_gvMHy5Gmv6A-PCzDGStQSmXq0f7fnYF04TMTlavmhAX5dsy3Bz3XrVaO6VLPK5lU7CSKFOR2g8udlhCzsoqDpPgjXh9cOx66bHtRPvLo1-c_Bq7Q?key=2W8eZpCKkz-n-CtGI6rZFUNp",
