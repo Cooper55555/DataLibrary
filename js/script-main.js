@@ -69,6 +69,13 @@ document.addEventListener("DOMContentLoaded", () => {
       image: "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000030578/0044e12000898466f4f61a21a43d8343f68f976dd1d9ec784815a6862cfd311b",
       keywords: ["Information"],
     },
+    {
+      name: "Fortnite",
+      url: "html/index-fortnite.html",
+      description: "Explore all the information about the history and rarity!",
+      image: "https://www.esport.nl/wp-content/uploads/2019/02/fortnitead.jpg",
+      keywords: ["Information"],
+    },
   ];
 
   const app = document.getElementById("app");

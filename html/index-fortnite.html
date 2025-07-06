@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fortnite Cosmetics</title>
+    <link rel="stylesheet" href="../css/style-fortnite.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+          <nav id="main-navbar" class="navbar">
+      <a href="https://www.datalibrary.online/" class="navbar-logo" style="text-decoration: none;">
+        <div class="logo-container">
+          <i class="fas fa-database logo-icon"></i>
+          <span class="logo-text">DataLibrary</span>
+        </div>
+      </a>
+      <div class="navbar-links">
+        <button class="nav-btn active" data-section="first-section">
+          <i class="fas fa-solid fa-flask"></i>
+          <span>ROYALE</span>
+        </button>
+        <button class="nav-btn" data-section="second-section">
+          <i class="fas fa-solid fa-car"></i>
+          <span>CARS</span>
+        </button>
+                <button class="nav-btn" data-section="third-section">
+          <i class="fas fa-solid fa-shirt"></i>
+          <span>BEANS</span>
+        </button>
+        <div class="navbar-settings">
+          <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+        </div>
+      </div>
+    </nav>
+
+    <div id="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+    <!-- BR SECTION -->
+    <div id="first-section" class="section">
+    <h1 class="main-title">Fortnite Cosmetics Items</h1>
+      <div class="controls">
+        <input type="text" id="search-br" placeholder="Search item by name…" />
+        <select id="type-br">
+          <option value="all">All Types</option>
+        </select>
+        <select id="sort-br">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="random">Random</option>
+        </select>
+      </div>
+      <div id="cosmetics-container"></div>
+    </div>
+
+    <!-- CARS SECTION -->
+    <div id="second-section" class="section" style="display: none">
+    <h1 class="main-title">Fortnite Cosmetics Cars</h1>
+      <div class="controls">
+        <input
+          type="text"
+          id="search-cars"
+          placeholder="Search car by name…"
+        />
+        <select id="type-cars">
+          <option value="all">All Types</option>
+        </select>
+        <select id="sort-cars">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="random">Random</option>
+        </select>
+      </div>
+      <div id="cosmetics-container-cars"></div>
+    </div>
+
+    <!-- BEANS SECTION -->
+    <div id="third-section" class="section" style="display: none">
+    <h1 class="main-title">Fortnite Cosmetics Beans</h1>
+      <div class="controls">
+        <input
+          type="text"
+          id="search-beans"
+          placeholder="Search bean by name…"
+        />
+        <select id="type-beans">
+          <option value="all">All Types</option>
+        </select>
+        <select id="sort-beans">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="random">Random</option>
+        </select>
+      </div>
+      <div id="cosmetics-container-beans"></div>
+    </div>
+
+    <div id="settings-modal-tcg" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-button" onclick="toggleTCGSettingsModal()">×</span>
+        <h2>Settings</h2>
+
+        <div class="switch-container">
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggleModal" />
+            <span class="slider"></span>
+          </label>
+          <span>Dark Mode</span>
+        </div>
+
+        <div class="social-button-container">
+          <a
+            href="https://discord.gg/t5BGDzzSXg"
+            target="_blank"
+            class="social-button discord"
+            ><i class="fab fa-discord"></i
+          ></a>
+          <a
+            href="https://median.co/share/jrkxbe#apk"
+            target="_blank"
+            class="social-button android"
+            ><i class="fab fa-android"></i
+          ></a>
+        </div>
+                      <div class="counter-container">
+        <h5 class="countertext">Your Visitor Counter:</h5>
+        <div id="visitor-count">0</div>
+    </div>
+      </div>
+    </div>
+
+    <!-- global back-to-top -->
+
+    <div class="copyright-container">
+      <h5>© 2025 DataLibrary. This website has been made by Ampired and Cooper.</h5>
+    </div>
+
+    <script src="../js/script-fortnite.js" type="module"></script>
+  </body>
+</html>
