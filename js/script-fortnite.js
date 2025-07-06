@@ -1,5 +1,3 @@
-// script.js
-
 // ── CONFIG ──────────────────────────────────────────────────────
 const config = {
   first: {
@@ -78,8 +76,7 @@ async function onNavClick(e) {
       : "none";
   });
 
-  // dark mode + settings modal logic (unchanged)...
-  initSettingsModal();
+  // ** DO NOT CALL initSettingsModal() here! It should only run once. **
 
   // lazy‐fetch data with skeleton placeholders
   if (allData[currentSection].length === 0) {
@@ -92,6 +89,7 @@ async function onNavClick(e) {
 }
 
 // ── SETTINGS MODAL + DARK MODE ─────────────────────────────────
+// ** Initialize modal once at page load **
 function initSettingsModal() {
   const modal = document.getElementById("settings-modal-tcg");
   const darkToggle = document.getElementById("darkModeToggleModal");
@@ -145,7 +143,7 @@ function showSkeletons(section) {
 
 // ── FETCH ─────────────────────────────────────────────────────
 async function fetchData(url) {
-  loading.classList.remove("hidden"); // ✅ show
+  loading.classList.remove("hidden"); // show
   try {
     const res = await fetch(url);
     const json = await res.json();
@@ -154,7 +152,7 @@ async function fetchData(url) {
     console.error(err);
     return [];
   } finally {
-    loading.classList.add("hidden"); // ✅ hide
+    loading.classList.add("hidden"); // hide
   }
 }
 
@@ -180,7 +178,7 @@ function resetAndRender(section) {
   applyFilters(section);
 }
 
-// debounce helper (unchanged)
+// debounce helper
 function debounce(fn, delay = 300) {
   let t;
   return (...a) => {
@@ -281,54 +279,16 @@ function createCard(cos) {
       ${genderLine}
       <h5>${cos.set?.text || ""}</h5>
       <h6>ADDED: ${(cos.added || "").split("T")[0]}</h6>
-    </div>
-  `;
-
-  // fade-in image when loaded
-  const img = card.querySelector("img");
-  img.style.opacity = 0;
-  img.addEventListener("load", () => {
-    img.style.transition = "opacity 0.3s ease";
-    img.style.opacity = 1;
-  });
-
+    </div>`;
   return card;
 }
 
-// ── THROTTLE (unchanged) ───────────────────────────────────────
-function throttle(fn, delay = 250) {
-  let last = 0;
-  return function (...args) {
-    const now = Date.now();
-    if (now - last >= delay) {
-      last = now;
-      fn.apply(this, args);
-    }
-  };
-}
-
-// ── INFINITE SCROLL → relies on prefetch so no changes here ────
-window.addEventListener(
-  "scroll",
-  throttle(() => {
-    const { sectionId, containerId } = config[currentSection];
-    const secEl = document.getElementById(sectionId);
-    if (secEl.style.display !== "block") return;
-
-    const cont = document.getElementById(containerId);
-    if (
-      window.innerHeight + window.scrollY >=
-      cont.offsetTop + cont.offsetHeight - 300
-    ) {
-      if (
-        pageIndex[currentSection] * batchSize <
-        filteredData[currentSection].length
-      ) {
-        scheduleRenderBatch(currentSection);
-      }
-    }
-  }, 250)
-);
+// ── ON PAGE LOAD ────────────────────────────────────────────────
+window.addEventListener("load", async () => {
+  initSettingsModal();
+  // trigger initial nav load (first tab)
+  document.querySelector(".nav-btn").click();
+});
 
 // ── INITIAL LAUNCH ──────────────────────────────────────────────
 document.querySelector(".nav-btn.active").click();
