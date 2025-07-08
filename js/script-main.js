@@ -76,6 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
       image: "https://www.esport.nl/wp-content/uploads/2019/02/fortnitead.jpg",
       keywords: ["Information"],
     },
+    {
+      name: "Jurassic World Alive",
+      url: "html/index-jwa.html",
+      description: "Keep track of all your dinosaurs and choose your favorite!",
+      image: "https://cdn.xsolla.net/image-proxy/rs:fit:3840:0/f:webp/storage/merchant-bucket-prod/files/uploaded/sitebuilder/386410/5b773b82e944091d3a36f16dfb5fcc69.jpg@webp",
+      keywords: ["Checklist"],
+    },
   ];
 
   const app = document.getElementById("app");
