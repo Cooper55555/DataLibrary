@@ -451,12 +451,11 @@ h1 {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   width: 40vw;
-  border: 2px solid #333;
 }
 
 .dark-mode .controls {
-  background-color: #1e293b;
-  border: 1px solid white;
+  background-color: var(--glass-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 input[type="text"],
@@ -512,18 +511,16 @@ select {
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 2px solid rgba(30, 41, 59, 0.95);
   border-radius: 16px;
   overflow: hidden;
   transition: transform 0.3s ease;
   backdrop-filter: blur(16px);
-  box-shadow: var(--shadow-soft-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .dark-mode .cosmetic-card {
   background: var(--glass-dark);
-  border: 1px solid var(--glass-border-dark);
-  box-shadow: var(--shadow-soft-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .cosmetic-card:hover {
@@ -704,7 +701,7 @@ select {
 }
 
 .dark-mode .cosmetic-card {
-  border: 1px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(10px);
 }
 
