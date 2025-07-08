@@ -195,7 +195,7 @@ function renderCollection(key, filter = "all") {
     <div class="search-bar">
       <div class="search-container">
         <i class="fas fa-search search-icon"></i>
-        <input id="search-${key}" type="text" placeholder="Search Pokemon..." />
+        <input id="search-${key}" type="text" placeholder="Search Dinosaur..." />
       </div>
     </div>
     
@@ -220,7 +220,7 @@ function renderCollection(key, filter = "all") {
     </div>
 
     <div class="copyright-container">
-      <h5>© 2025 PokeLibrary. Made by Cooper and Pepper.</h5>
+      <h5>© 2025 DataLibrary. This website has been made by Cooper.</h5>
     </div>
 
     <div id="modal" class="modal hidden">
