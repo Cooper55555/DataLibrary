@@ -182,7 +182,7 @@ function goHome() {
     </div>
 
     <div class="copyright-container">
-      <h5>© 2025 PokeLibrary. Made by Cooper and Pepper.</h5>
+      <h5>© 2025 DataLibrary. This website has been made by Cooper and Pepper.</h5>
     </div>
 
     <div id="modal" class="modal hidden">
