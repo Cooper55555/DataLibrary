@@ -2,7 +2,7 @@ class DataLibraryChatbot {
   constructor() {
     this.isOpen = false;
     this.isTyping = false;
-    this.apiKey = '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';
+    this.apiKey = '/api/chat';
     this.conversationHistory = [];
     this.systemPrompt = `You are a helpful assistant for DataLibrary, a gaming website. Keep responses short and casual. 
 
