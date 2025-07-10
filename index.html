@@ -42,17 +42,6 @@
           <span>ABOUT</span>
         </button>
         <div class="navbar-settings">
-          <div id="auth-container">
-            <button id="sign-in-btn" class="auth-btn">
-              <i class="fab fa-google"></i>
-              <span>Sign In</span>
-            </button>
-            <div id="user-profile" class="user-profile hidden">
-              <img id="user-avatar" src="" alt="User Avatar" class="user-avatar">
-              <span id="user-name"></span>
-              <button id="sign-out-btn" class="auth-btn sign-out">Sign Out</button>
-            </div>
-          </div>
           <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
         </div>
       </div>
@@ -491,64 +480,10 @@
     <h5>© 2025 DataLibrary. This website has been made by the entire DataLibrary team.</h5>
   </div>
 
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
-    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
-    
-  const firebaseConfig = {
-    apiKey: "AIzaSyD9VSEEj-D9FWFAsM4Rx8oUD4aARuNmqUg",
-    authDomain: "datalibrary-53b94.firebaseapp.com",
-    projectId: "datalibrary-53b94",
-    storageBucket: "datalibrary-53b94.firebasestorage.app",
-    messagingSenderId: "668846276357",
-    appId: "1:668846276357:web:6e2e1db60983ba22da416c",
-    measurementId: "G-S5GCFH3FBB"
-  };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    const signInBtn = document.getElementById('sign-in-btn');
-    const signOutBtn = document.getElementById('sign-out-btn');
-    const userProfile = document.getElementById('user-profile');
-    const userAvatar = document.getElementById('user-avatar');
-    const userName = document.getElementById('user-name');
-
-    signInBtn.addEventListener('click', async () => {
-      try {
-        const result = await signInWithPopup(auth, provider);
-        console.log('User signed in:', result.user);
-      } catch (error) {
-        console.error('Sign in error:', error);
-      }
-    });
-
-    signOutBtn.addEventListener('click', async () => {
-      try {
-        await signOut(auth);
-        console.log('User signed out');
-      } catch (error) {
-        console.error('Sign out error:', error);
-      }
-    });
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        signInBtn.classList.add('hidden');
-        userProfile.classList.remove('hidden');
-        userAvatar.src = user.photoURL;
-        userName.textContent = user.displayName;
-      } else {
-        signInBtn.classList.remove('hidden');
-        userProfile.classList.add('hidden');
-      }
-    });
-  </script>
-
   <script src="js/script-main.js"></script>
   <script src="html/timeline-main.html"></script>
   <link rel="stylesheet" href="css/style-chatbot.css" />
   <script src="js/script-chatbot.js"></script>
+</body>
 </body>
 </html>
