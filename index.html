@@ -11,6 +11,59 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
   <link rel="icon" href="https://cdn.discordapp.com/avatars/1339214670099382382/7e0935121ed73e51d4cf8ab3442feb4c.webp?size=100" type="image/x-icon">
+  <style>
+    .navbar-settings {
+      margin-left: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    #auth-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .auth-btn {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: white !important;
+      border: none !important;
+      padding: 0.4rem !important;
+      border-radius: 8px !important;
+      font-size: 0.9rem !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 32px !important;
+      height: 32px !important;
+    }
+
+    .auth-btn:hover {
+      background: rgba(255, 255, 255, 0.2) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    .auth-btn.sign-out {
+      background: rgba(239, 68, 68, 0.2) !important;
+    }
+
+    .auth-btn.sign-out:hover {
+      background: rgba(239, 68, 68, 0.3) !important;
+    }
+
+    .user-profile {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
         <nav id="main-navbar" class="navbar">
@@ -42,6 +95,16 @@
           <span>ABOUT</span>
         </button>
         <div class="navbar-settings">
+          <div id="auth-container">
+            <button id="sign-in-btn" class="auth-btn">
+              <i class="fas fa-sign-in-alt"></i>
+            </button>
+            <div id="user-profile" class="user-profile hidden">
+              <button id="sign-out-btn" class="auth-btn sign-out">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
+            </div>
+          </div>
           <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
         </div>
       </div>
@@ -77,13 +140,11 @@
 
 <div class="team-wrapper">
 
-  <!-- ====== Developers ====== -->
-         <div class="hero-section">
+  <div class="hero-section">
     <h1 class="main-title">Meet The Developers</h1>
     <p class="hero-subtitle">The talented developers behind DataLibrary</p>
   </div>
   <div class="team-section">
-    <!-- Full Stack Devs -->
     <div class="team-member" onclick="openTeamModal('lxzy')">
       <img src="https://cdn.discordapp.com/avatars/1233363061440512011/32ef183dcb2201179f442c77e8b8b7d8.webp?size=80" alt="Dev 4" />
       <h3>Lxzy</h3>
@@ -103,7 +164,6 @@
       <div class="click-hint">Click for more info</div>
     </div>
 
-    <!-- Frontend Devs -->
     <div class="team-member" onclick="openTeamModal('ampired')">
       <img src="https://cdn.discordapp.com/avatars/954342432416358420/8669e174f4e7595868723679806ad5e4.webp?size=80" alt="Dev 2" />
       <h3>Ampired</h3>
@@ -142,8 +202,7 @@
     </div>
   </div>
 
-  <!-- ====== Moderators ====== -->
-         <div class="hero-section">
+  <div class="hero-section">
     <h1 class="main-title">Meet The Moderators</h1>
     <p class="hero-subtitle">The talented moderators behind the Discord server</p>
   </div>
@@ -165,7 +224,6 @@
     </div>
   </div>
 
-  <!-- ====== Helpers ====== -->
   <div class="hero-section">
     <h1 class="main-title">Meet The Helpers</h1>
     <p class="hero-subtitle">The talented helpers behind the information</p>
@@ -480,10 +538,66 @@
     <h5>© 2025 DataLibrary. This website has been made by the entire DataLibrary team.</h5>
   </div>
 
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyBAzltCjux1oEtKK6xq6x7g604OqvxYFiM",
+      authDomain: "datalibrary-ed02a.firebaseapp.com",
+      projectId: "datalibrary-ed02a",
+      storageBucket: "datalibrary-ed02a.firebasestorage.app",
+      messagingSenderId: "745741633636",
+      appId: "1:745741633636:web:585b1e7be48011fb423771"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const signInBtn = document.getElementById('sign-in-btn');
+    const signOutBtn = document.getElementById('sign-out-btn');
+    const userProfile = document.getElementById('user-profile');
+
+    let currentUserId = null;
+
+    async function signInUser() {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        console.log('User signed in:', result.user);
+      } catch (error) {
+        console.error('Sign in error:', error);
+      }
+    }
+
+    signInBtn.addEventListener('click', signInUser);
+
+    signOutBtn.addEventListener('click', async () => {
+      try {
+        currentUserId = null;
+        await signOut(auth);
+        console.log('User signed out');
+      } catch (error) {
+        console.error('Sign out error:', error);
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        signInBtn.classList.add('hidden');
+        userProfile.classList.remove('hidden');
+        currentUserId = user.uid;
+      } else {
+        signInBtn.classList.remove('hidden');
+        userProfile.classList.add('hidden');
+        currentUserId = null;
+      }
+    });
+  </script>
+
   <script src="js/script-main.js"></script>
   <script src="html/timeline-main.html"></script>
   <link rel="stylesheet" href="css/style-chatbot.css" />
   <script src="js/script-chatbot.js"></script>
-</body>
 </body>
 </html>
