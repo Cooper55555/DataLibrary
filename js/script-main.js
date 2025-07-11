@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       image:
         "https://lh7-rt.googleusercontent.com/docsz/AD_4nXcNFbsImBQ3y2IjHBuQge6ub_gvMHy5Gmv6A-PCzDGStQSmXq0f7fnYF04TMTlavmhAX5dsy3Bz3XrVaO6VLPK5lU7CSKFOR2g8udlhCzsoqDpPgjXh9cOx66bHtRPvLo1-c_Bq7Q?key=2W8eZpCKkz-n-CtGI6rZFUNp",
       keywords: ["Checklist"],
+      progress: 100,
     },
     {
       name: "Roblox",
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       image:
         "https://assets.telkomsel.com/public/2025-02/Serba-Serbi-Game-Roblox-Favorit-Anak-Jaman-Sekarang.jpg?VersionId=WgO11X.SaRD1R2umpzAMOCG6jnkJftFQ",
       keywords: ["Information"],
+      progress: 70,
     },
     {
       name: "Valorant",
@@ -47,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Get the latest Valorant agent stats and weapon info!",
       image: "https://wallpapers.com/images/featured/valorant-agents-39zhmexxi0mmhhk9.jpg",
       keywords: ["Information"],
+      progress: 30,
     },
     {
       name: "Minecraft",
@@ -54,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Discover all the minecraft profiles and servers!",
       image: "https://staticg.sportskeeda.com/editor/2025/01/8827f-17376979472538-1920.jpg?w=640",
       keywords: ["Information"],
+      progress: 55,
     },
     {
       name: "World Of Tanks",
@@ -61,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Get more information about the tanks, maps and way more of the game!",
       image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1407200/e648ae1371233ebdd917a7917b66963a80cff0ae/capsule_616x353.jpg?t=1750951866",
       keywords: ["Information"],
+      progress: 70,
     },
     {
       name: "Super Animal Royale",
@@ -68,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Discover the awesome information of weapons, character prices and way more!",
       image: "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000030578/0044e12000898466f4f61a21a43d8343f68f976dd1d9ec784815a6862cfd311b",
       keywords: ["Information"],
+      progress: 10,
     },
     {
       name: "Fortnite",
@@ -75,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Explore all the information about the history and rarity!",
       image: "https://www.esport.nl/wp-content/uploads/2019/02/fortnitead.jpg",
       keywords: ["Information"],
+      progress: 80,
     },
     {
       name: "Jurassic World Alive",
@@ -82,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       description: "Keep track of all your dinosaurs and choose your favorite!",
       image: "https://cdn.xsolla.net/image-proxy/rs:fit:3840:0/f:webp/storage/merchant-bucket-prod/files/uploaded/sitebuilder/386410/5b773b82e944091d3a36f16dfb5fcc69.jpg@webp",
       keywords: ["Checklist"],
+      progress: 90,
     },
   ];
 
@@ -110,20 +118,45 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    filtered.forEach(({ name, url, description, image }, index) => {
+    filtered.forEach(({ name, url, description, image, progress }, index) => {
       const card = document.createElement("div");
       card.className = "game-card";
       card.style.animationDelay = `${index * 0.1}s`;
-      card.innerHTML = `
-        <div class="card-glow"></div>
-        <img src="${image}" alt="${name}" class="game-image" style="width:100%; max-width:300px; border-radius:8px"/>
-        <h2 class="game-title">${name}</h2>
-        <p class="game-description">${description}</p>
-        <a href="${url}" target="_blank" class="game-link">
-          <span>Visit ${name}</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
-      `;
+
+let progressBarColor = "";
+if (typeof progress !== "undefined") {
+  if (progress >= 80) {
+    progressBarColor = "#4caf50"; // green
+  } else if (progress >= 40) {
+    progressBarColor = "#ff9800"; // orange
+  } else {
+    progressBarColor = "#f44336"; // red
+  }
+}
+
+card.innerHTML = `
+  <div class="card-glow"></div>
+
+  ${typeof progress !== "undefined" ? `
+    <div class="progress-container" style="width: 100%; background-color: #eee; border-radius: 8px; height: 10px; margin-bottom: 8px; max-width:300px;">
+      <div class="progress-bar" style="
+        height: 100%;
+        border-radius: 8px;
+        width: ${progress}%;
+        background-color: ${progressBarColor};
+        transition: width 0.3s;">
+      </div>
+    </div>
+  ` : ""}
+
+  <img src="${image}" alt="${name}" class="game-image" style="width:100%; max-width:300px; border-radius:8px"/>
+  <h2 class="game-title">${name}</h2>
+  <p class="game-description">${description}</p>
+  <a href="${url}" target="_blank" class="game-link">
+    <span>Visit ${name}</span>
+    <i class="fas fa-arrow-right"></i>
+  </a>
+`;
       container.appendChild(card);
     });
   }
