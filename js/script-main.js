@@ -149,7 +149,7 @@ card.innerHTML = `
     </div>
   ` : ""}
 
-  <img src="${image}" alt="${name}" class="game-image" style="width:100%; max-width:300px; border-radius:8px"/>
+  <img src="${image}" alt="${name}" class="game-image" style="width:100%; max-width:300px; border-radius:8px;"/>
   <h2 class="game-title">${name}</h2>
   <p class="game-description">${description}</p>
   <a href="${url}" target="_blank" class="game-link">
@@ -197,6 +197,27 @@ function toggleTCGSettingsModal() {
 
   if (!modal.classList.contains("hidden")) {
     syncToggleWithDarkMode();
+  }
+}
+
+function toggleTCGSettingsModal2() {
+  const modal2 = document.getElementById("settings-modal-tcg-2");
+  const overlay = document.getElementById("modal-overlay-2");
+  modal2.classList.toggle("hidden");
+  overlay.classList.toggle("hidden");
+
+  if (!modal2.classList.contains("hidden")) {
+    syncToggleWithDarkMode();
+
+    if (currentUser) {
+      document.getElementById('modal2-user-name').textContent = currentUser.displayName || currentUser.email.split('@')[0];
+      document.getElementById('modal2-user-email').textContent = currentUser.email || 'N/A';
+      document.getElementById('modal2-coin-count').textContent = loadCoins(currentUser.uid);
+    } else {
+      document.getElementById('modal2-user-name').textContent = 'Not signed in';
+      document.getElementById('modal2-user-email').textContent = 'N/A';
+      document.getElementById('modal2-coin-count').textContent = '0';
+    }
   }
 }
 
@@ -305,6 +326,35 @@ const teamData = {
     }
   }
 };
+
+  const shopItems = [
+    {
+      name: "Discord VIP Role",
+      desc: "Unlock Secret Channels.",
+      img: "https://cdn.mos.cms.futurecdn.net/2mzw9kd5ijTKYuw7YaTWYR.jpg",
+      cost: 500
+    },
+  ];
+
+  const grid = document.getElementById("item-grid");
+
+  function renderItems() {
+    grid.innerHTML = "";
+    shopItems.forEach((item) => {
+      const card = document.createElement("div");
+      card.className = "item-card";
+        card.innerHTML = `
+        <div class="item-glow"></div>
+          <img src="${item.img}" alt="${item.name}" class="item-image" style="width:100%; max-width:300px; border-radius:8px;" />
+          <h2 class="game-title">${item.name}</h2>
+          <p class="game-description">${item.desc}</p>
+          <div class="buy-button">Buy For ${item.cost} Coins</div>
+        `;
+      grid.appendChild(card);
+    });
+  }
+
+  renderItems();
 
 function openTeamModal(memberId) {
   const member = teamData[memberId];
