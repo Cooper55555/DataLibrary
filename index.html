@@ -474,7 +474,7 @@
     </div>
   </a>
 </div>
-    
+
     <div class="navbar-center">
       <button class="nav-btn active" data-section="first-section">
         <i class="fas fa-home"></i>
@@ -497,6 +497,10 @@
         <span>SHOP</span>
       </button>
       <button class="nav-btn" data-section="fifth-section">
+        <i class="fas fa-solid fa-chart-simple"></i>
+        <span>STATS</span>
+      </button>
+      <button class="nav-btn" data-section="sixth-section">
         <i class="fas fa-info-circle"></i>
         <span>ABOUT</span>
       </button>
@@ -862,6 +866,32 @@
 
 <div id="fifth-section" class="section" style="display:none;">
   <div class="hero-section">
+    <h1 class="main-title">Account Statistics</h1>
+    <p class="hero-subtitle">Check out all your achievements and statistics</p>
+  </div>
+
+<div class="trophy-hall">
+  <div class="nail"></div>
+  <div class="trophy-row">
+    <div class="trophy" id="time-rookie"><i class="fas fa-clock rookie"></i><p>5hrs Active</p></div>
+    <div class="trophy" id="time-novice"><i class="fas fa-clock novice"></i><p>25hrs Active</p></div>
+    <div class="trophy" id="time-skilled"><i class="fas fa-clock skilled"></i><p>75hrs Active</p></div>
+    <div class="trophy" id="time-expert"><i class="fas fa-clock expert"></i><p>125hrs Active</p></div>
+    <div class="trophy" id="time-master"><i class="fas fa-clock master"></i><p>250hrs Active</p></div>
+  </div>
+  <div class="trophy-row">
+    <div class="trophy" id="coin-rookie"><i class="fas fa-coins rookie"></i><p>250 Coins</p></div>
+    <div class="trophy" id="coin-novice"><i class="fas fa-coins novice"></i><p>500 Coins</p></div>
+    <div class="trophy" id="coin-skilled"><i class="fas fa-coins skilled"></i><p>1000 Coins</p></div>
+    <div class="trophy" id="coin-expert"><i class="fas fa-coins expert"></i><p>1750 Coins</p></div>
+    <div class="trophy" id="coin-master"><i class="fas fa-coins master"></i><p>2500 Coins</p></div>
+  </div>
+</div>
+
+</div>
+
+<div id="sixth-section" class="section" style="display:none;">
+  <div class="hero-section">
     <h1 class="main-title">About DataLibrary</h1>
     <p class="hero-subtitle">Learn more about our mission and vision</p>
   </div>
@@ -926,6 +956,7 @@
     <div class="account-info">
       <p><strong>Name:</strong> <span id="modal-user-name"><span id="user-name" class="user-name">Log in to see your name!</span></span></p>
       <p><strong>Coins:</strong> <span id="coin-icon"></span><span id="coin-value">0</span> <span id="coin-msg" style="font-weight: normal; display: none;">Log in to see your coins!</span></p>
+      <p><strong>Time:</strong> <span id="session-minutes">0</span> minutes</p>
     </div>
   </div>
 </div>
@@ -989,136 +1020,128 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const $ = id => document.getElementById(id);
-const signInBtn = $('sign-in-btn');
-const signOutBtn = $('sign-out-btn');
-const userProfile = $('user-profile');
-const userAvatar = $('user-avatar');
-const userName = $('user-name');
+const signInBtn = $('sign-in-btn'), signOutBtn = $('sign-out-btn'), userProfile = $('user-profile'),
+  userAvatar = $('user-avatar'), userName = $('user-name'), coinIcon = $('coin-icon'),
+  coinValue = $('coin-value'), coinMsg = $('coin-msg');
 
-const coinDisplay = $('coin-count');
-const coinIcon = $('coin-icon');
-const coinValue = $('coin-value');
-const coinMsg = $('coin-msg');
+let coinInterval, timeInterval, sessionInterval, currentUser;
 
-let coinInterval = null;
-let currentUser = null;
+const getKey = (uid, type) => `${type}_${uid}`;
 
-function getStorageKey(uid) {
-  return `coins_${uid}`;
-}
-
-function loadCoins(uid) {
-  const coins = parseInt(localStorage.getItem(getStorageKey(uid)), 10);
-  return isNaN(coins) ? 0 : coins;
-}
-
-function saveCoins(uid, coins) {
-  localStorage.setItem(getStorageKey(uid), coins);
-}
+const load = (uid, type) => parseInt(localStorage.getItem(getKey(uid, type)), 10) || 0;
+const save = (uid, type, val) => localStorage.setItem(getKey(uid, type), val);
 
 function updateDisplay(coins) {
-  coinValue.textContent = coins;
+  if (coinValue) coinValue.textContent = coins;
+  if (currentUser) unlockTrophies(load(currentUser.uid, 'maxCoins'), load(currentUser.uid, 'timeMinutes'));
 }
 
 function startCoinTimer(user) {
-  if (coinInterval) clearInterval(coinInterval);
-  currentUser = user;
-  let coins = loadCoins(user.uid);
+  clearInterval(coinInterval);
+  let coins = load(user.uid, 'coins');
   updateDisplay(coins);
-
   coinInterval = setInterval(() => {
     coins++;
-    saveCoins(user.uid, coins);
+    save(user.uid, 'coins', coins);
+    if(coins > load(user.uid, 'maxCoins')) save(user.uid, 'maxCoins', coins);
     updateDisplay(coins);
-  }, 60000); // every 1 minute
+  }, 60000);
 }
 
-window.toggleCertificateModal = function(show = false) {
-  const modal = document.getElementById("certificate-modal");
-  modal.classList.toggle("show", show);
-  modal.classList.toggle("hidden", !show);
-};
+function startTimeTracker(user) {
+  clearInterval(timeInterval);
+  const uid = user.uid;
+  let minutes = load(uid, 'timeMinutes');
+  // Add offline minutes since last login
+  const lastKey = getKey(uid, 'lastLogin_time');
+  const now = Date.now();
+  const last = parseInt(localStorage.getItem(lastKey), 10);
+  if (!isNaN(last)) minutes += Math.floor((now - last) / 60000);
+  save(uid, 'timeMinutes', minutes);
+  localStorage.setItem(lastKey, now);
+  unlockTrophies(load(uid, 'maxCoins'), minutes);
+  timeInterval = setInterval(() => {
+    minutes++;
+    save(uid, 'timeMinutes', minutes);
+    localStorage.setItem(lastKey, Date.now());
+    unlockTrophies(load(uid, 'maxCoins'), minutes);
+  }, 60000);
+}
 
-window.confirmCloseCertificate = function () {
-  showConfirmModal("Are you sure? This cannot be reversed.").then(confirmed => {
-    if (confirmed) {
-      toggleCertificateModal(false); // Just close modal — NO coin logic here
-    }
-  });
-};
+function updateSessionDisplay(minutes) {
+  const el = document.getElementById('session-minutes');
+  if (el) el.textContent = minutes;
+}
 
-window.buyItem = function(index) {
-  if (!currentUser) {
-    showAlertModal("Please log in to buy items.");
-    return;
-  }
-
-  const item = shopItems[index];
-  const coins = loadCoins(currentUser.uid);
-
-  if (coins < item.cost) {
-    showAlertModal("You don't have enough coins.");
-    return;
-  }
-
-  // Ask to confirm purchase
-  showConfirmModal(`Are you sure you want to buy "${item.name}" for ${item.cost} coins? This cannot be reversed.`)
-    .then((confirmed) => {
-      if (!confirmed) return;
-
-      const newBalance = coins - item.cost;
-      saveCoins(currentUser.uid, newBalance);
-      updateDisplay(newBalance);
-
-      document.getElementById("cert-item-name").textContent = item.name;
-      document.getElementById("cert-item-desc").textContent = item.desc;
-      document.getElementById("cert-user-name").textContent =
-        currentUser.displayName || currentUser.email.split('@')[0];
-      document.getElementById("cert-date").textContent = new Date().toLocaleString();
-
-      toggleCertificateModal(true);
-    });
-};
+// Modify your startSessionTimer function:
+function startSessionTimer(user) {
+  clearInterval(sessionInterval);
+  const uid = user.uid;
+  let minutes = load(uid, 'sessionMinutes');
+  updateSessionDisplay(minutes);
+  sessionInterval = setInterval(() => {
+    minutes++;
+    save(uid, 'sessionMinutes', minutes);
+    updateSessionDisplay(minutes);
+  }, 60000);
+}
 
 signInBtn.onclick = () => signInWithPopup(auth, provider).catch(console.error);
-
 signOutBtn.onclick = () => {
-  if (coinInterval) clearInterval(coinInterval);
-  coinInterval = null;
+  [coinInterval, timeInterval, sessionInterval].forEach(i => clearInterval(i));
   currentUser = null;
   signOut(auth).catch(console.error);
 };
 
 onAuthStateChanged(auth, user => {
   if (user) {
+    currentUser = user;
     signInBtn.classList.add('hidden');
     userProfile.classList.remove('hidden');
     userAvatar.src = user.photoURL || '';
     userName.textContent = user.displayName || user.email.split('@')[0];
-
-    // Show coin icon + value, hide message
     coinIcon.style.display = 'inline-block';
     coinValue.style.display = 'inline-block';
     coinMsg.style.display = 'none';
-
     startCoinTimer(user);
+    startTimeTracker(user);
+    startSessionTimer(user);
   } else {
+    currentUser = null;
     signInBtn.classList.remove('hidden');
     userProfile.classList.add('hidden');
-
-    // Hide coin icon and value, show login message
     coinIcon.style.display = 'none';
     coinValue.style.display = 'none';
     coinMsg.style.display = 'inline-block';
-
     updateDisplay(0);
-
-    if (coinInterval) {
-      clearInterval(coinInterval);
-      coinInterval = null;
-    }
+    [coinInterval, timeInterval, sessionInterval].forEach(i => clearInterval(i));
   }
 });
+
+function unlockTrophies(maxCoins, sessionMinutes) {
+  const unlockIf = (id, condition) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('unlocked', condition);
+  };
+
+  // Time trophies thresholds in minutes (5h = 300 min, etc.)
+  [
+    { id: "time-rookie", minutes: 300 },
+    { id: "time-novice", minutes: 1500 },
+    { id: "time-skilled", minutes: 4500 },
+    { id: "time-expert", minutes: 7500 },
+    { id: "time-master", minutes: 15000 },
+  ].forEach(t => unlockIf(t.id, sessionMinutes >= t.minutes));
+
+  // Coin trophies thresholds (maxCoins)
+  [
+    { id: "coin-rookie", coins: 250 },
+    { id: "coin-novice", coins: 500 },
+    { id: "coin-skilled", coins: 1000 },
+    { id: "coin-expert", coins: 1750 },
+    { id: "coin-master", coins: 2500 }
+  ].forEach(t => unlockIf(t.id, maxCoins >= t.coins));
+}
   </script>
 
 <div id="certificate-modal" class="modal hidden">

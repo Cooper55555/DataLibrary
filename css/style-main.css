@@ -35,6 +35,182 @@ body {
   overflow-x: hidden;
 }
 
+.trophy-hall {
+  max-width: 700px;
+  margin: 5rem auto 3rem;
+  padding: 2rem;
+  font-family: var(--font-family, Arial, sans-serif);
+  background: var(--background-light);
+  border: 6px solid var(--primary-orange);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.dark-mode .trophy-hall {
+  max-width: 700px;
+  margin: 5rem auto 3rem;
+  padding: 2rem;
+  font-family: var(--font-family, Arial, sans-serif);
+  background: var(--glass-bg);
+  border: 6px solid var(--primary-orange);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* HANGER container */
+.trophy-hall::before {
+  content: "";
+  position: absolute;
+  top: -3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 20px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange) 100%);
+  box-shadow:
+    inset 0 -3px 5px rgba(255 255 255 / 0.5),
+    0 3px 6px rgba(0 0 0 / 0.3);
+  z-index: 10;
+}
+
+/* HANGER hook */
+.trophy-hall::after {
+  content: "";
+  position: absolute;
+  top: -3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 50px;
+  border: 4px solid var(--primary-orange);
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  background: transparent;
+  z-index: 11;
+}
+
+/* NAIL ("Spijker") above hanger */
+.trophy-hall .nail {
+  position: absolute;
+  top: -3.3rem; /* slightly above the hanger hook */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #444; /* dark nail color */
+  border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%; /* slight oval, like a nail head */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 -1.5px 3px #222;
+  z-index: 12;
+}
+
+/* Shelves */
+.trophy-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 4px solid var(--primary-orange);
+  position: relative;
+}
+
+.trophy-row:last-child {
+  border-bottom: none;
+}
+
+/* Trophy compartments */
+.trophy {
+  flex: 1;
+  max-width: 80px;
+  background: #f8e7d0;
+  border-radius: 6px;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+  user-select: none;
+  cursor: default;
+  border-left: 3px solid var(--primary-orange) !important;
+}
+
+.trophy:first-child {
+  border-left: none;
+}
+
+.trophy i {
+  font-size: 3rem;
+  margin-bottom: 0.3rem;
+  pointer-events: none;
+  transition: none;
+}
+
+.trophy p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #865d1b;
+  user-select: text;
+}
+
+/* Unlocked trophies */
+.trophy.unlocked {
+  opacity: 1;
+  background: #fff3db;
+  color: var(--text-primary);
+  border-color: var(--primary-orange-dark);
+}
+
+/* Rank Colors override icon colors */
+.rookie  { color: #8B4513; }
+.novice  { color: #cd7f32; }
+.skilled { color: #c0c0c0; }
+.expert  { color: #ffd700; }
+.master  { color: #4B0082; }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .trophy-hall {
+    max-width: 90%;
+    padding: 1rem 1rem;
+    margin-top: 4rem;
+  }
+
+  .trophy-row {
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+    border-bottom-width: 3px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .trophy {
+    max-width: 55px;
+    padding: 0.8rem 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .trophy i {
+    font-size: 2.4rem;
+  }
+
+  .trophy p {
+    font-size: 0.9rem;
+  }
+}
+
 .home-container {
   display: flex;
   justify-content: center;
