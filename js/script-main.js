@@ -330,7 +330,7 @@ const teamData = {
   const shopItems = [
     {
       name: "Discord VIP Role",
-      desc: "Unlock Secret Channels.",
+      desc: "Unlock secret channels in our Discord server.",
       img: "https://cdn.mos.cms.futurecdn.net/2mzw9kd5ijTKYuw7YaTWYR.jpg",
       cost: 500
     },
@@ -338,23 +338,82 @@ const teamData = {
 
   const grid = document.getElementById("item-grid");
 
-  function renderItems() {
-    grid.innerHTML = "";
-    shopItems.forEach((item) => {
-      const card = document.createElement("div");
-      card.className = "item-card";
-        card.innerHTML = `
-        <div class="item-glow"></div>
-          <img src="${item.img}" alt="${item.name}" class="item-image" style="width:100%; max-width:300px; border-radius:8px;" />
-          <h2 class="game-title">${item.name}</h2>
-          <p class="game-description">${item.desc}</p>
-          <div class="buy-button">Buy For ${item.cost} Coins</div>
-        `;
-      grid.appendChild(card);
-    });
-  }
+function renderItems() {
+  grid.innerHTML = "";
+  shopItems.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "item-card";
+    card.innerHTML = `
+      <div class="item-glow"></div>
+      <img src="${item.img}" alt="${item.name}" class="item-image" style="width:100%; max-width:300px; border-radius:8px;" />
+      <h2 class="game-title">${item.name}</h2>
+      <p class="game-description">${item.desc}</p>
+      <div class="buy-button">Buy For ${item.cost} Coins</div>
+    `;
+
+    // Add click listener AFTER adding the card
+    const buyButton = card.querySelector('.buy-button');
+    buyButton.addEventListener('click', () => buyItem(index));
+
+    grid.appendChild(card);
+  });
+}
 
   renderItems();
+
+  function showAlertModal(message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById('custom-alert-modal');
+    const messageEl = document.getElementById('custom-alert-message');
+    const okBtn = document.getElementById('alert-ok-btn');
+
+    messageEl.textContent = message;
+    modal.classList.remove('hidden');
+    modal.classList.add('show');
+
+    function close() {
+      modal.classList.add('hidden');
+      modal.classList.remove('show');
+      okBtn.removeEventListener('click', close);
+      resolve();
+    }
+
+    okBtn.addEventListener('click', close);
+  });
+}
+
+function showConfirmModal(message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById('custom-confirm-modal');
+    const messageEl = document.getElementById('custom-confirm-message');
+    const yesBtn = document.getElementById('confirm-yes');
+    const noBtn = document.getElementById('confirm-no');
+
+    messageEl.textContent = message;
+    modal.classList.remove('hidden');
+    modal.classList.add('show');
+
+    function cleanup() {
+      modal.classList.add('hidden');
+      modal.classList.remove('show');
+      yesBtn.removeEventListener('click', onYes);
+      noBtn.removeEventListener('click', onNo);
+    }
+
+    function onYes() {
+      cleanup();
+      resolve(true);
+    }
+
+    function onNo() {
+      cleanup();
+      resolve(false);
+    }
+
+    yesBtn.addEventListener('click', onYes);
+    noBtn.addEventListener('click', onNo);
+  });
+}
 
 function openTeamModal(memberId) {
   const member = teamData[memberId];

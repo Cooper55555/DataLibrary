@@ -1033,6 +1033,53 @@ function startCoinTimer(user) {
   }, 60000); // every 1 minute
 }
 
+window.toggleCertificateModal = function(show = false) {
+  const modal = document.getElementById("certificate-modal");
+  modal.classList.toggle("show", show);
+  modal.classList.toggle("hidden", !show);
+};
+
+window.confirmCloseCertificate = function () {
+  showConfirmModal("Are you sure? This cannot be reversed.").then(confirmed => {
+    if (confirmed) {
+      toggleCertificateModal(false); // Just close modal — NO coin logic here
+    }
+  });
+};
+
+window.buyItem = function(index) {
+  if (!currentUser) {
+    showAlertModal("Please log in to buy items.");
+    return;
+  }
+
+  const item = shopItems[index];
+  const coins = loadCoins(currentUser.uid);
+
+  if (coins < item.cost) {
+    showAlertModal("You don't have enough coins.");
+    return;
+  }
+
+  // Ask to confirm purchase
+  showConfirmModal(`Are you sure you want to buy "${item.name}" for ${item.cost} coins? This cannot be reversed.`)
+    .then((confirmed) => {
+      if (!confirmed) return;
+
+      const newBalance = coins - item.cost;
+      saveCoins(currentUser.uid, newBalance);
+      updateDisplay(newBalance);
+
+      document.getElementById("cert-item-name").textContent = item.name;
+      document.getElementById("cert-item-desc").textContent = item.desc;
+      document.getElementById("cert-user-name").textContent =
+        currentUser.displayName || currentUser.email.split('@')[0];
+      document.getElementById("cert-date").textContent = new Date().toLocaleString();
+
+      toggleCertificateModal(true);
+    });
+};
+
 signInBtn.onclick = () => signInWithPopup(auth, provider).catch(console.error);
 
 signOutBtn.onclick = () => {
@@ -1073,6 +1120,39 @@ onAuthStateChanged(auth, user => {
   }
 });
   </script>
+
+<div id="certificate-modal" class="modal hidden">
+  <div class="modal-content-2">
+    <span class="close-button-2" onclick="confirmCloseCertificate()">×</span>
+    <h2>Redeem Certificate</h2>
+    <div class="certificate-body">
+      <p><strong>Item:</strong> <span id="cert-item-name"></span></p>
+      <p><strong>Description:</strong> <span id="cert-item-desc"></span></p>
+      <p><strong>Purchased By:</strong> <span id="cert-user-name"></span></p>
+      <p><strong>Date:</strong> <span id="cert-date"></span></p>
+      <p><strong>Status:</strong> Successfully Redeemed</p>
+    </div>
+  </div>
+</div>
+
+<div id="custom-confirm-modal" class="modal hidden">
+  <div class="modal-content-2">
+    <h3 id="custom-confirm-message">Are you sure?</h3>
+    <div class="confirm-buttons">
+      <button id="confirm-yes" class="confirm-btn yes">Yes</button>
+      <button id="confirm-no" class="confirm-btn no">No</button>
+    </div>
+  </div>
+</div>
+
+<div id="custom-alert-modal" class="modal hidden">
+  <div class="modal-content-2">
+    <h3 id="custom-alert-message">Alert message here</h3>
+    <div class="alert-buttons">
+      <button id="alert-ok-btn" class="alert-btn ok">Okay</button>
+    </div>
+  </div>
+</div>
 
   <script src="js/script-main.js"></script>
   <script src="html/timeline-main.html"></script>
