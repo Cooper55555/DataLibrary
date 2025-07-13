@@ -1118,6 +1118,49 @@ onAuthStateChanged(auth, user => {
   }
 });
 
+window.buyItem = function(index) {
+  if (!currentUser) {
+    showAlertModal("Please log in to buy items.");
+    return;
+  }
+
+  const item = shopItems[index];
+  const uid = currentUser.uid;
+
+  let coins = load(uid, 'coins');          // current coins balance
+  let maxCoins = load(uid, 'maxCoins');    // max coins ever earned
+
+  if (coins < item.cost) {
+    showAlertModal("You don't have enough coins.");
+    return;
+  }
+
+  showConfirmModal(`Are you sure you want to buy "${item.name}" for ${item.cost} coins? This cannot be reversed.`)
+    .then(confirmed => {
+      if (!confirmed) return;
+
+      coins -= item.cost;
+      save(uid, 'coins', coins);
+
+      // Update maxCoins if current coins is now higher than recorded max (usually it won't increase here)
+      if (coins > maxCoins) {
+        maxCoins = coins;
+        save(uid, 'maxCoins', maxCoins);
+      }
+
+      updateDisplay(coins);
+
+      // Show certificate modal details
+      document.getElementById("cert-item-name").textContent = item.name;
+      document.getElementById("cert-item-desc").textContent = item.desc;
+      document.getElementById("cert-user-name").textContent =
+        currentUser.displayName || currentUser.email.split('@')[0];
+      document.getElementById("cert-date").textContent = new Date().toLocaleString();
+
+      toggleCertificateModal(true);
+    });
+};
+
 function unlockTrophies(maxCoins, sessionMinutes) {
   const unlockIf = (id, condition) => {
     const el = document.getElementById(id);
