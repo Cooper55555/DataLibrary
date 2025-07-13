@@ -577,6 +577,7 @@ body {
 
 .countertext {
   font-weight: 600;
+  margin: 0px !important;
 }
 
 .dark-mode .countertext {
