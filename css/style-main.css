@@ -102,6 +102,12 @@ body {
   border: 1px solid #eee;
 }
 
+.dark-mode .trophy {
+  background: rgba(51, 65, 85, 1) !important;
+  color: white;
+  border: inherit;
+}
+
 /* Trophy icon */
 .trophy i {
   font-size: 1.8rem;
