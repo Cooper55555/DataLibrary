@@ -1003,193 +1003,252 @@
   </div>
 
   <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+  import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBAzltCjux1oEtKK6xq6x7g604OqvxYFiM",
-  authDomain: "datalibrary-ed02a.firebaseapp.com",
-  projectId: "datalibrary-ed02a",
-  storageBucket: "datalibrary-ed02a.appspot.com",
-  messagingSenderId: "745741633636",
-  appId: "1:745741633636:web:585b1e7be48011fb423771"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-
-const $ = id => document.getElementById(id);
-const signInBtn = $('sign-in-btn'), signOutBtn = $('sign-out-btn'), userProfile = $('user-profile'),
-  userAvatar = $('user-avatar'), userName = $('user-name'), coinIcon = $('coin-icon'),
-  coinValue = $('coin-value'), coinMsg = $('coin-msg');
-
-let coinInterval, timeInterval, sessionInterval, currentUser;
-
-const getKey = (uid, type) => `${type}_${uid}`;
-
-const load = (uid, type) => parseInt(localStorage.getItem(getKey(uid, type)), 10) || 0;
-const save = (uid, type, val) => localStorage.setItem(getKey(uid, type), val);
-
-function updateDisplay(coins) {
-  if (coinValue) coinValue.textContent = coins;
-  if (currentUser) unlockTrophies(load(currentUser.uid, 'maxCoins'), load(currentUser.uid, 'timeMinutes'));
-}
-
-function startCoinTimer(user) {
-  clearInterval(coinInterval);
-  let coins = load(user.uid, 'coins');
-  updateDisplay(coins);
-  coinInterval = setInterval(() => {
-    coins++;
-    save(user.uid, 'coins', coins);
-    if(coins > load(user.uid, 'maxCoins')) save(user.uid, 'maxCoins', coins);
-    updateDisplay(coins);
-  }, 60000);
-}
-
-function startTimeTracker(user) {
-  clearInterval(timeInterval);
-  const uid = user.uid;
-  let minutes = load(uid, 'timeMinutes');
-  // Add offline minutes since last login
-  const lastKey = getKey(uid, 'lastLogin_time');
-  const now = Date.now();
-  const last = parseInt(localStorage.getItem(lastKey), 10);
-  if (!isNaN(last)) minutes += Math.floor((now - last) / 60000);
-  save(uid, 'timeMinutes', minutes);
-  localStorage.setItem(lastKey, now);
-  unlockTrophies(load(uid, 'maxCoins'), minutes);
-  timeInterval = setInterval(() => {
-    minutes++;
-    save(uid, 'timeMinutes', minutes);
-    localStorage.setItem(lastKey, Date.now());
-    unlockTrophies(load(uid, 'maxCoins'), minutes);
-  }, 60000);
-}
-
-function updateSessionDisplay(minutes) {
-  const el = document.getElementById('session-minutes');
-  if (el) el.textContent = minutes;
-}
-
-// Modify your startSessionTimer function:
-function startSessionTimer(user) {
-  clearInterval(sessionInterval);
-  const uid = user.uid;
-  let minutes = load(uid, 'sessionMinutes');
-  updateSessionDisplay(minutes);
-  sessionInterval = setInterval(() => {
-    minutes++;
-    save(uid, 'sessionMinutes', minutes);
-    updateSessionDisplay(minutes);
-  }, 60000);
-}
-
-signInBtn.onclick = () => signInWithPopup(auth, provider).catch(console.error);
-signOutBtn.onclick = () => {
-  [coinInterval, timeInterval, sessionInterval].forEach(i => clearInterval(i));
-  currentUser = null;
-  signOut(auth).catch(console.error);
-};
-
-onAuthStateChanged(auth, user => {
-  if (user) {
-    currentUser = user;
-    signInBtn.classList.add('hidden');
-    userProfile.classList.remove('hidden');
-    userAvatar.src = user.photoURL || '';
-    userName.textContent = user.displayName || user.email.split('@')[0];
-    coinIcon.style.display = 'inline-block';
-    coinValue.style.display = 'inline-block';
-    coinMsg.style.display = 'none';
-    startCoinTimer(user);
-    startTimeTracker(user);
-    startSessionTimer(user);
-  } else {
-    currentUser = null;
-    signInBtn.classList.remove('hidden');
-    userProfile.classList.add('hidden');
-    coinIcon.style.display = 'none';
-    coinValue.style.display = 'none';
-    coinMsg.style.display = 'inline-block';
-    updateDisplay(0);
-    [coinInterval, timeInterval, sessionInterval].forEach(i => clearInterval(i));
-  }
-});
-
-window.buyItem = function(index) {
-  if (!currentUser) {
-    showAlertModal("Please log in to buy items.");
-    return;
-  }
-
-  const item = shopItems[index];
-  const uid = currentUser.uid;
-
-  let coins = load(uid, 'coins');          // current coins balance
-  let maxCoins = load(uid, 'maxCoins');    // max coins ever earned
-
-  if (coins < item.cost) {
-    showAlertModal("You don't have enough coins.");
-    return;
-  }
-
-  showConfirmModal(`Are you sure you want to buy "${item.name}" for ${item.cost} coins? This cannot be reversed.`)
-    .then(confirmed => {
-      if (!confirmed) return;
-
-      coins -= item.cost;
-      save(uid, 'coins', coins);
-
-      // Update maxCoins if current coins is now higher than recorded max (usually it won't increase here)
-      if (coins > maxCoins) {
-        maxCoins = coins;
-        save(uid, 'maxCoins', maxCoins);
-      }
-
-      updateDisplay(coins);
-
-      // Show certificate modal details
-      document.getElementById("cert-item-name").textContent = item.name;
-      document.getElementById("cert-item-desc").textContent = item.desc;
-      document.getElementById("cert-user-name").textContent =
-        currentUser.displayName || currentUser.email.split('@')[0];
-      document.getElementById("cert-date").textContent = new Date().toLocaleString();
-
-      toggleCertificateModal(true);
-    });
-};
-
-function unlockTrophies(maxCoins, sessionMinutes) {
-  const unlockIf = (id, condition) => {
-    const el = document.getElementById(id);
-    if (el) el.classList.toggle('unlocked', condition);
+  // Your firebase config here
+  const firebaseConfig = {
+    apiKey: "AIzaSyBAzltCjux1oEtKK6xq6x7g604OqvxYFiM",
+    authDomain: "datalibrary-ed02a.firebaseapp.com",
+    projectId: "datalibrary-ed02a",
+    storageBucket: "datalibrary-ed02a.appspot.com",
+    messagingSenderId: "745741633636",
+    appId: "1:745741633636:web:585b1e7be48011fb423771"
   };
 
-  // Time trophies thresholds in minutes (5h = 300 min, etc.)
-  [
-    { id: "time-rookie", minutes: 300 },
-    { id: "time-novice", minutes: 1500 },
-    { id: "time-skilled", minutes: 4500 },
-    { id: "time-expert", minutes: 7500 },
-    { id: "time-master", minutes: 15000 },
-  ].forEach(t => unlockIf(t.id, sessionMinutes >= t.minutes));
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
-  // Coin trophies thresholds (maxCoins)
-  [
-    { id: "coin-rookie", coins: 250 },
-    { id: "coin-novice", coins: 500 },
-    { id: "coin-skilled", coins: 1000 },
-    { id: "coin-expert", coins: 1750 },
-    { id: "coin-master", coins: 2500 }
-  ].forEach(t => unlockIf(t.id, maxCoins >= t.coins));
-}
+  const $ = id => document.getElementById(id);
+  const signInBtn = $('sign-in-btn'), signOutBtn = $('sign-out-btn'), userProfile = $('user-profile'),
+    userAvatar = $('user-avatar'), userName = $('user-name'), coinIcon = $('coin-icon'),
+    coinValue = $('coin-value'), coinMsg = $('coin-msg');
+
+  let coinInterval, timeInterval, sessionInterval, currentUser;
+
+  const getKey = (uid, type) => `${type}_${uid}`;
+
+  const load = (uid, type) => parseInt(localStorage.getItem(getKey(uid, type)), 10) || 0;
+  const save = (uid, type, val) => localStorage.setItem(getKey(uid, type), val);
+
+  function updateDisplay(coins) {
+    if (coinValue) coinValue.textContent = coins;
+    if (currentUser) unlockTrophies(load(currentUser.uid, 'maxCoins'), load(currentUser.uid, 'timeMinutes'));
+  }
+
+  function startCoinTimer(user) {
+    clearInterval(coinInterval);
+    let coins = load(user.uid, 'coins');
+    updateDisplay(coins);
+    coinInterval = setInterval(() => {
+      coins++;
+      save(user.uid, 'coins', coins);
+      if(coins > load(user.uid, 'maxCoins')) save(user.uid, 'maxCoins', coins);
+      updateDisplay(coins);
+    }, 60000);
+  }
+
+  function startTimeTracker(user) {
+    clearInterval(timeInterval);
+    const uid = user.uid;
+    let minutes = load(uid, 'timeMinutes');
+    const lastKey = getKey(uid, 'lastLogin_time');
+    const now = Date.now();
+    const last = parseInt(localStorage.getItem(lastKey), 10);
+    if (!isNaN(last)) minutes += Math.floor((now - last) / 60000);
+    save(uid, 'timeMinutes', minutes);
+    localStorage.setItem(lastKey, now);
+    unlockTrophies(load(uid, 'maxCoins'), minutes);
+    timeInterval = setInterval(() => {
+      minutes++;
+      save(uid, 'timeMinutes', minutes);
+      localStorage.setItem(lastKey, Date.now());
+      unlockTrophies(load(uid, 'maxCoins'), minutes);
+    }, 60000);
+  }
+
+  function updateSessionDisplay(minutes) {
+    const el = document.getElementById('session-minutes');
+    if (el) el.textContent = minutes;
+  }
+
+  function startSessionTimer(user) {
+    clearInterval(sessionInterval);
+    const uid = user.uid;
+    let minutes = load(uid, 'sessionMinutes');
+    updateSessionDisplay(minutes);
+    sessionInterval = setInterval(() => {
+      minutes++;
+      save(uid, 'sessionMinutes', minutes);
+      updateSessionDisplay(minutes);
+    }, 60000);
+  }
+
+  signInBtn.onclick = () => signInWithPopup(auth, provider).catch(console.error);
+  signOutBtn.onclick = () => {
+    [coinInterval, timeInterval, sessionInterval].forEach(i => clearInterval(i));
+    currentUser = null;
+    signOut(auth).catch(console.error);
+  };
+
+  function toggleCertificateModal(show) {
+    const modal = document.getElementById('certificate-modal');
+    if (modal) {
+      modal.classList.toggle('hidden', !show);
+    }
+  }
+
+  function confirmCloseCertificate() {
+    showConfirmModal("Are you sure you want to close this certificate? This cannot be reversed.")
+      .then(confirmed => {
+        if (confirmed) toggleCertificateModal(false);
+      });
+  }
+
+  // Attach the close button listener here instead of inline onclick
+  document.getElementById('close-cert-btn').addEventListener('click', confirmCloseCertificate);
+
+  function showConfirmModal(message) {
+    return new Promise(resolve => {
+      const modal = document.getElementById("custom-confirm-modal");
+      const messageEl = document.getElementById("custom-confirm-message");
+      const yesBtn = document.getElementById("confirm-yes");
+      const noBtn = document.getElementById("confirm-no");
+
+      messageEl.textContent = message;
+      modal.classList.remove("hidden");
+
+      const cleanup = () => {
+        modal.classList.add("hidden");
+        yesBtn.removeEventListener("click", onYes);
+        noBtn.removeEventListener("click", onNo);
+      };
+
+      const onYes = () => {
+        cleanup();
+        resolve(true);
+      };
+
+      const onNo = () => {
+        cleanup();
+        resolve(false);
+      };
+
+      yesBtn.addEventListener("click", onYes);
+      noBtn.addEventListener("click", onNo);
+    });
+  }
+
+  function showAlertModal(message) {
+    const modal = document.getElementById("custom-alert-modal");
+    const messageEl = document.getElementById("custom-alert-message");
+    const okBtn = document.getElementById("alert-ok-btn");
+
+    messageEl.textContent = message;
+    modal.classList.remove("hidden");
+
+    const cleanup = () => {
+      modal.classList.add("hidden");
+      okBtn.removeEventListener("click", cleanup);
+    };
+
+    okBtn.addEventListener("click", cleanup);
+  }
+
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      currentUser = user;
+      signInBtn.classList.add('hidden');
+      userProfile.classList.remove('hidden');
+      userAvatar.src = user.photoURL || '';
+      userName.textContent = user.displayName || user.email.split('@')[0];
+      coinIcon.style.display = 'inline-block';
+      coinValue.style.display = 'inline-block';
+      coinMsg.style.display = 'none';
+      startCoinTimer(user);
+      startTimeTracker(user);
+      startSessionTimer(user);
+    } else {
+      currentUser = null;
+      signInBtn.classList.remove('hidden');
+      userProfile.classList.add('hidden');
+      coinIcon.style.display = 'none';
+      coinValue.style.display = 'none';
+      coinMsg.style.display = 'inline-block';
+      updateDisplay(0);
+      [coinInterval, timeInterval, sessionInterval].forEach(i => clearInterval(i));
+    }
+  });
+
+  window.buyItem = function(index) {
+    if (!currentUser) {
+      showAlertModal("Please log in to buy items.");
+      return;
+    }
+
+    const item = shopItems[index];
+    const uid = currentUser.uid;
+
+    let coins = load(uid, 'coins');          // current coins balance
+    let maxCoins = load(uid, 'maxCoins');    // max coins ever earned
+
+    if (coins < item.cost) {
+      showAlertModal("You don't have enough coins.");
+      return;
+    }
+
+    showConfirmModal(`Are you sure you want to buy "${item.name}" for ${item.cost} coins? This cannot be reversed.`)
+      .then(confirmed => {
+        if (!confirmed) return;
+
+        coins -= item.cost;
+        save(uid, 'coins', coins);
+
+        if (coins > maxCoins) {
+          maxCoins = coins;
+          save(uid, 'maxCoins', maxCoins);
+        }
+
+        updateDisplay(coins);
+
+        document.getElementById("cert-item-name").textContent = item.name;
+        document.getElementById("cert-item-desc").textContent = item.desc;
+        document.getElementById("cert-user-name").textContent =
+          currentUser.displayName || currentUser.email.split('@')[0];
+        document.getElementById("cert-date").textContent = new Date().toLocaleString();
+
+        toggleCertificateModal(true);
+      });
+  };
+
+  function unlockTrophies(maxCoins, sessionMinutes) {
+    const unlockIf = (id, condition) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('unlocked', condition);
+    };
+
+    [
+      { id: "time-rookie", minutes: 300 },
+      { id: "time-novice", minutes: 1500 },
+      { id: "time-skilled", minutes: 4500 },
+      { id: "time-expert", minutes: 7500 },
+      { id: "time-master", minutes: 15000 },
+    ].forEach(t => unlockIf(t.id, sessionMinutes >= t.minutes));
+
+    [
+      { id: "coin-rookie", coins: 250 },
+      { id: "coin-novice", coins: 500 },
+      { id: "coin-skilled", coins: 1000 },
+      { id: "coin-expert", coins: 1750 },
+      { id: "coin-master", coins: 2500 }
+    ].forEach(t => unlockIf(t.id, maxCoins >= t.coins));
+  }
   </script>
 
 <div id="certificate-modal" class="modal hidden">
   <div class="modal-content-2">
-    <span class="close-button-2" onclick="confirmCloseCertificate()">×</span>
+    <span id="close-cert-btn" class="close-button-2">×</span>
     <h2>Redeem Certificate</h2>
     <div class="certificate-body">
       <p><strong>Item:</strong> <span id="cert-item-name"></span></p>
