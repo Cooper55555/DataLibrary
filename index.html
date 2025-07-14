@@ -871,21 +871,63 @@
   </div>
 
 <div class="trophy-hall">
-  <div class="nail"></div>
-  <div class="trophy-row">
-    <div class="trophy" id="time-rookie"><i class="fas fa-clock rookie"></i><p>5hrs Active</p></div>
-    <div class="trophy" id="time-novice"><i class="fas fa-clock novice"></i><p>25hrs Active</p></div>
-    <div class="trophy" id="time-skilled"><i class="fas fa-clock skilled"></i><p>75hrs Active</p></div>
-    <div class="trophy" id="time-expert"><i class="fas fa-clock expert"></i><p>125hrs Active</p></div>
-    <div class="trophy" id="time-master"><i class="fas fa-clock master"></i><p>250hrs Active</p></div>
+
+  <!-- Time Line (top) -->
+  <svg class="path-lines time-line" viewBox="0 0 1000 6" style="margin-bottom: 50px" preserveAspectRatio="none">
+    <path class="path-base" d="M20 3 H980" />
+    <path class="path-progress" d="M20 3 H980" />
+  </svg>
+
+  <!-- Coin Line (bottom) -->
+  <svg class="path-lines coin-line" viewBox="0 0 1000 6" style="margin-top: 50px" preserveAspectRatio="none">
+    <path class="path-base" d="M20 3 H980" />
+    <path class="path-progress" d="M20 3 H980" />
+  </svg>
+
+  <!-- Coin-Based Trophies -->
+  <div id="coin-rookie" class="trophy coin" style="left: 50px;">
+    <i class="fas fa-coins"></i>
+    Rookie
   </div>
-  <div class="trophy-row">
-    <div class="trophy" id="coin-rookie"><i class="fas fa-coins rookie"></i><p>250 Coins</p></div>
-    <div class="trophy" id="coin-novice"><i class="fas fa-coins novice"></i><p>500 Coins</p></div>
-    <div class="trophy" id="coin-skilled"><i class="fas fa-coins skilled"></i><p>1000 Coins</p></div>
-    <div class="trophy" id="coin-expert"><i class="fas fa-coins expert"></i><p>1750 Coins</p></div>
-    <div class="trophy" id="coin-master"><i class="fas fa-coins master"></i><p>2500 Coins</p></div>
+  <div id="coin-novice" class="trophy coin" style="left: 250px;">
+    <i class="fas fa-coins"></i>
+    Novice
   </div>
+  <div id="coin-skilled" class="trophy coin" style="left: 450px;">
+    <i class="fas fa-coins"></i>
+    Skilled
+  </div>
+  <div id="coin-expert" class="trophy coin" style="left: 650px;">
+    <i class="fas fa-coins"></i>
+    Expert
+  </div>
+  <div id="coin-master" class="trophy coin" style="left: 850px;">
+    <i class="fas fa-coins"></i>
+    Master
+  </div>
+
+  <!-- Time-Based Trophies -->
+  <div id="time-rookie" class="trophy time" style="left: 50px;">
+    <i class="fas fa-clock"></i>
+    Rookie
+  </div>
+  <div id="time-novice" class="trophy time" style="left: 250px;">
+    <i class="fas fa-clock"></i>
+    Novice
+  </div>
+  <div id="time-skilled" class="trophy time" style="left: 450px;">
+    <i class="fas fa-clock"></i>
+    Skilled
+  </div>
+  <div id="time-expert" class="trophy time" style="left: 650px;">
+    <i class="fas fa-clock"></i>
+    Expert
+  </div>
+  <div id="time-master" class="trophy time" style="left: 850px;">
+    <i class="fas fa-clock"></i>
+    Master
+  </div>
+
 </div>
 
 </div>
@@ -1222,28 +1264,32 @@
       });
   };
 
-  function unlockTrophies(maxCoins, sessionMinutes) {
-    const unlockIf = (id, condition) => {
-      const el = document.getElementById(id);
-      if (el) el.classList.toggle('unlocked', condition);
-    };
+function unlockTrophies(maxCoins, sessionMinutes) {
+  const unlockIf = (id, condition) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('unlocked', condition);
+  };
 
-    [
-      { id: "time-rookie", minutes: 300 },
-      { id: "time-novice", minutes: 1500 },
-      { id: "time-skilled", minutes: 4500 },
-      { id: "time-expert", minutes: 7500 },
-      { id: "time-master", minutes: 15000 },
-    ].forEach(t => unlockIf(t.id, sessionMinutes >= t.minutes));
+  [
+    { id: "time-rookie", minutes: 300 },
+    { id: "time-novice", minutes: 1500 },
+    { id: "time-skilled", minutes: 4500 },
+    { id: "time-expert", minutes: 7500 },
+    { id: "time-master", minutes: 15000 },
+  ].forEach(t => unlockIf(t.id, sessionMinutes >= t.minutes));
 
-    [
-      { id: "coin-rookie", coins: 250 },
-      { id: "coin-novice", coins: 500 },
-      { id: "coin-skilled", coins: 1000 },
-      { id: "coin-expert", coins: 1750 },
-      { id: "coin-master", coins: 2500 }
-    ].forEach(t => unlockIf(t.id, maxCoins >= t.coins));
-  }
+  [
+    { id: "coin-rookie", coins: 250 },
+    { id: "coin-novice", coins: 500 },
+    { id: "coin-skilled", coins: 1000 },
+    { id: "coin-expert", coins: 1750 },
+    { id: "coin-master", coins: 2500 }
+  ].forEach(t => unlockIf(t.id, maxCoins >= t.coins));
+
+  // 🔁 Recalculate the visual progress after unlocking
+  updateLineProgress('.time-line', '.trophy.time');
+  updateLineProgress('.coin-line', '.trophy.coin');
+}
   </script>
 
 <div id="certificate-modal" class="modal hidden">
@@ -1283,5 +1329,6 @@
   <script src="html/timeline-main.html"></script>
   <link rel="stylesheet" href="css/style-chatbot.css" />
   <script src="js/script-chatbot.js"></script>
+  
 </body>
 </html>

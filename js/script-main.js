@@ -415,6 +415,30 @@ function showConfirmModal(message) {
   });
 }
 
+function updateLineProgress(lineSelector, trophySelector) {
+  const trophies = document.querySelectorAll(trophySelector);
+  const unlocked = document.querySelectorAll(`${trophySelector}.unlocked`).length;
+  const total = trophies.length;
+
+  const line = document.querySelector(`${lineSelector} .path-progress`);
+  if (line && total > 0) {
+    const length = line.getTotalLength();
+    
+    // Apply correct dasharray and initial stroke
+    line.style.strokeDasharray = `${length}`;
+    line.style.strokeDashoffset = `${length}`;
+
+    const progressRatio = unlocked / total;
+    const offset = length * (1 - progressRatio);
+    line.style.strokeDashoffset = `${offset}`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLineProgress('.time-line', '.trophy.time');
+  updateLineProgress('.coin-line', '.trophy.coin');
+});
+
 function openTeamModal(memberId) {
   const member = teamData[memberId];
   if (!member) return;
