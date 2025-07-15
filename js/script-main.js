@@ -324,6 +324,16 @@ const teamData = {
     socials: {
       discord: "https://discord.com/users/1383395562333929482",
     }
+  },
+  psycho: {
+    name: "Psycho",
+    role: "Full Stack Dev",
+    avatar: "https://cdn.discordapp.com/avatars/1187151195001851924/a42a64eb3a012f69ba47f606edb83d9d.webp?size=80",
+    bio: "Bio coming soon...",
+    projects: ["Discord Bot Developer"],
+    socials: {
+      discord: "https://discord.com/users/1187151195001851924",
+    }
   }
 };
 
