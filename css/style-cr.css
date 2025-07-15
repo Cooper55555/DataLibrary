@@ -641,6 +641,11 @@ h1 {
     right: 0;
     top: 0;
   }
+
+      .main-title {
+    margin-top: 20px !important;
+    font-size: 2rem !important;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -653,6 +658,27 @@ h1 {
   .mod-content {
     top: 80%;
   }
+}
+
+.main-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 40px 40px 5px 40px;
+  background: linear-gradient(135deg, var(--text-primary) 0%, #475569 50%, var(--primary-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  animation: fadeInUp 1s ease-out;
+  text-align: center;
+}
+
+.dark-mode .main-title {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, var(--primary-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ---------- DARK MODE EXTENSIONS ---------- */
