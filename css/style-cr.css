@@ -563,6 +563,7 @@ h1 {
   }
 
   .popup-card {
+    width: inherit;
     flex-direction: column;
     padding: 0.8rem 0;
   }
