@@ -563,7 +563,6 @@ h1 {
   }
 
   .popup-card {
-    width: 11rem;
     flex-direction: column;
     padding: 0.8rem 0;
   }
