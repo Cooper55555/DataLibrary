@@ -91,6 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
       keywords: ["Checklist"],
       progress: 90,
     },
+    {
+      name: "Clash Royale",
+      url: "html/index-cr.html",
+      description: "Get information about the best playstyle in the game!",
+      image: "https://i.ytimg.com/vi/uWsQ5IWVilM/maxresdefault.jpg",
+      keywords: ["Information"],
+      progress: 30,
+    },
   ];
 
   const app = document.getElementById("app");
@@ -329,7 +337,7 @@ const teamData = {
     name: "Psycho",
     role: "Full Stack Dev",
     avatar: "https://cdn.discordapp.com/avatars/1187151195001851924/a42a64eb3a012f69ba47f606edb83d9d.webp?size=80",
-    bio: "Bio coming soon...",
+    bio: "Full Stack Developer focused on building fast, functional, and user-friendly web applications.",
     projects: ["Discord Bot Developer"],
     socials: {
       discord: "https://discord.com/users/1187151195001851924",

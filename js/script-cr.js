@@ -127,3 +127,17 @@ function createCard() {
 
 // ----- INIT -----
 createCard();
+
+let count = localStorage.getItem('visitorCount');
+if (!count) {
+    count = 0;
+}
+
+// Convert to number and increment
+count = Number(count) + 1;
+
+// Save the new count back to localStorage
+localStorage.setItem('visitorCount', count);
+
+// Show count on the page
+document.getElementById('visitor-count').textContent = count;

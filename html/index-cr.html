@@ -12,35 +12,29 @@
     <link rel="icon" href="https://cdn.discordapp.com/avatars/1339214670099382382/7e0935121ed73e51d4cf8ab3442feb4c.webp?size=100" type="image/x-icon">
   </head>
   <body>
-    <nav id="main-navbar" class="navbar">
-      <a href="https://www.datalibrary.online/" class="navbar-logo"
-        >DataLibrary</a
-      >
+          <nav id="main-navbar" class="navbar">
+      <a href="https://www.datalibrary.online/" class="navbar-logo" style="text-decoration: none;">
+        <div class="logo-container">
+          <i class="fas fa-database logo-icon"></i>
+          <span class="logo-text">DataLibrary</span>
+        </div>
+      </a>
       <div class="navbar-links">
         <button class="nav-btn active" data-section="first-section">
-         DECK
+          <i class="fas fa-solid fa-chess-rook"></i>
+          <span>DECKS</span>
         </button>
-        <!-- <button class="nav-btn" data-section="second-section">SECOND</button> -->
+        <div class="navbar-settings">
+          <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+        </div>
       </div>
     </nav>
 
     <div id="first-section" class="section">
-      <div class="settings-container">
-        <i
-          class="fas fa-cog settings-icon"
-          onclick="toggleTCGSettingsModal()"
-        ></i>
-      </div>
       <div class="card-container"></div>
     </div>
 
     <div id="second-section" class="section" style="display: none">
-      <div class="settings-container">
-        <i
-          class="fas fa-cog settings-icon"
-          onclick="toggleTCGSettingsModal()"
-        ></i>
-      </div>
       <h1>SECOND COMING SOON...</h1>
     </div>
 
@@ -71,13 +65,15 @@
             ><i class="fab fa-android"></i
           ></a>
         </div>
+                              <div class="counter-container">
+        <h5 class="countertext">Your Visitor Counter:</h5>
+        <div id="visitor-count">0</div>
+    </div>
       </div>
     </div>
 
     <div class="copyright-container">
-      <h5>
-        © 2025 DataLibrary. This website has been made by Ampired.
-      </h5>
+      <h5>© 2025 DataLibrary. This website has been made by Ampired and Cooper.</h5>
     </div>
     <script src="../js/script-cr.js" type="module"></script>
   </body>
