@@ -333,6 +333,8 @@ const teamData = {
     projects: ["Discord Bot Developer"],
     socials: {
       discord: "https://discord.com/users/1187151195001851924",
+      github: "https://github.com/Psycho-Fan?tab=repositories",
+      project: "https://pzycho.site/"
     }
   }
 };
