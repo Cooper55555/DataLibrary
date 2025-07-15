@@ -1474,7 +1474,7 @@ const petsDataPsu = [
   {
     name: "dominusegg", displayName: "Dominus Egg",
     image: "../high-rarity/exclusive/dominusegg.png",
-    baseValue: 100,
+    baseValue: 27,
     canHaveGold: false, canHaveRainbow: false, canHaveSerial: false,
     traitCombos: {
       "1": 0, "10": 0, "100": 0, "200": 0, "250": 0, "gold": 0, "rainbow": 0,
