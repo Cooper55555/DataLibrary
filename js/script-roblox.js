@@ -905,6 +905,15 @@ const petsDataPsu = [
     }
   },
   {
+    name: "techfox", displayName: "Tech Fox",
+    image: "../mid-rarity/epic/techfox.png",
+    baseValue: 0.0011,
+    canHaveGold: true, canHaveRainbow: true, canHaveSerial: false,
+    traitCombos: {
+      "1": 0, "10": 0, "100": 0, "200": 0, "250": 0, "gold": 0.0011, "rainbow": 0.0022,
+    }
+  },
+  {
     name: "flowerbee", displayName: "Flower Bee",
     image: "../mid-rarity/epic/flowerbee.png",
     baseValue: 0.0008,
@@ -1253,6 +1262,24 @@ const petsDataPsu = [
     canHaveGold: true, canHaveRainbow: true, canHaveSerial: false,
     traitCombos: {
       "1": 0, "10": 0, "100": 0, "200": 0, "250": 0, "gold": 0.0002, "rainbow": 0.0004,
+    }
+  },
+  {
+    name: "techbear", displayName: "Tech Bear",
+    image: "../low-rarity/common/techbear.png",
+    baseValue: 0.0009,
+    canHaveGold: true, canHaveRainbow: true, canHaveSerial: false,
+    traitCombos: {
+      "1": 0, "10": 0, "100": 0, "200": 0, "250": 0, "gold": 0.0009, "rainbow": 0.0018,
+    }
+  },
+  {
+    name: "techcat", displayName: "Tech Cat",
+    image: "../low-rarity/common/techcat.png",
+    baseValue: 0.0008,
+    canHaveGold: true, canHaveRainbow: true, canHaveSerial: false,
+    traitCombos: {
+      "1": 0, "10": 0, "100": 0, "200": 0, "250": 0, "gold": 0.0008, "rainbow": 0.0016,
     }
   },
   {
