@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <link rel="stylesheet" href="../css/style-cs2.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+
+      <nav id="main-navbar" class="navbar">
+      <a href="https://cooper55555.github.io/DataLibrary/" class="navbar-logo">DataLibrary</a>
+      <div class="navbar-links">
+        <button class="nav-btn active" data-section="first-section">Maps</button>
+        <button class="nav-btn" data-section="second-section">Weapons</button>
+      </div>
+    </nav>
+
+<div id="first-section" class="section">
+  <div class="settings-container">
+    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+  </div>
+  <!-- CS2 Maps Section -->
+  <section class="world-news">
+    <h2>CS2 Maps</h2>
+    <div class="map-card-list">
+      <div class="map-card" data-map="dust2" data-title="Dust II" data-img="assets/images/de_dust2.png" data-overview="Dust II is a classic map known for its simple layout and iconic mid doors. It is favored for its balance and fast-paced gameplay." data-fact="Fun Fact: Dust II has been featured in every major Counter-Strike tournament since its introduction.">
+        <img src="../assets/images/de_dust2.png" alt="Dust II" class="map-image" />
+        <div class="map-info">
+          <h3>Dust II</h3>
+          <p>Dust II is one of the most iconic maps in Counter-Strike history, known for its balanced layout and intense mid control. The map features two bombsites and is set in a Middle Eastern town.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="mirage" data-title="Mirage" data-img="assets/images/de_mirage.png" data-overview="Mirage is a staple of competitive play, offering a variety of strategies for both teams. Control of mid is crucial for success." data-fact="Fun Fact: Mirage was originally a community-made map before being adopted officially by Valve.">
+        <img src="../assets/images/de_mirage.png" alt="Mirage" class="map-image" />
+        <div class="map-info">
+          <h3>Mirage</h3>
+          <p>Mirage is a popular competitive map set in a North African city. It offers a variety of strategic options for both teams, with open mid areas and well-defined bombsites.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="inferno" data-title="Inferno" data-img="assets/images/de_inferno.png" data-overview="Inferno is known for its tight chokepoints and tactical depth. Banana and apartments are key areas for both teams." data-fact="Fun Fact: Inferno's church bell can be rung by shooting it.">
+        <img src="../assets/images/de_inferno.png" alt="Inferno" class="map-image" />
+        <div class="map-info">
+          <h3>Inferno</h3>
+          <p>Inferno is famous for its narrow chokepoints and tactical gameplay. The map is set in an Italian village and requires strong team coordination, especially around the banana and apartments areas.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="nuke" data-title="Nuke" data-img="assets/images/de_nuke.png" data-overview="Nuke features a unique vertical layout with upper and lower bombsites. Rotations and positioning are key to mastering this map." data-fact="Fun Fact: Nuke is the only map with two bombsites stacked on top of each other.">
+        <img src="../assets/images/de_nuke.png" alt="Nuke" class="map-image" />
+        <div class="map-info">
+          <h3>Nuke</h3>
+          <p>Nuke is a unique map with a vertical layout, featuring both upper and lower bombsites. Set in a nuclear power plant, it challenges players with its complex rotations and multiple entry points.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="ancient" data-title="Ancient" data-img="assets/images/de_ancient.png" data-overview="Ancient is set in a lush, overgrown temple complex. Its tight corridors and open mid make for dynamic gameplay." data-fact="Fun Fact: Ancient was added to the competitive pool in 2021, replacing Train.">
+        <img src="../assets/images/de_ancient.png" alt="Ancient" class="map-image" />
+        <div class="map-info">
+          <h3>Ancient</h3>
+          <p>Ancient is a newer addition to the CS2 map pool, set in a mysterious jungle temple. It features tight corridors and open spaces, rewarding both aggressive and methodical playstyles.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="overpass" data-title="Overpass" data-img="assets/images/de_overpass.png" data-overview="Overpass is set in Berlin and features a unique multi-level design. Control of the central area is crucial for both teams." data-fact="Fun Fact: Overpass was the first map created by Valve specifically for CS:GO.">
+        <img src="../assets/images/de_overpass.png" alt="Overpass" class="map-image" />
+        <div class="map-info">
+          <h3>Overpass</h3>
+          <p>Overpass is a map set in Berlin, Germany, known for its verticality and multiple routes. The map rewards creative strategies and strong team coordination.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="vertigo" data-title="Vertigo" data-img="assets/images/de_vertigo.png" data-overview="Vertigo is a high-rise construction site with tight corridors and dangerous ledges. Vertical play is a key feature." data-fact="Fun Fact: Vertigo was reworked extensively after its initial release to improve gameplay.">
+        <img src="../assets/images/de_vertigo.png" alt="Vertigo" class="map-image" />
+        <div class="map-info">
+          <h3>Vertigo</h3>
+          <p>Vertigo is set atop a skyscraper under construction. Its unique vertical layout and risky drop-offs make for exciting and unpredictable matches.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="anubis" data-title="Anubis" data-img="assets/images/de_anubis.png" data-overview="Anubis is set in an ancient Egyptian temple complex, featuring water routes and open mid control." data-fact="Fun Fact: Anubis was originally a community map before being added to the official pool.">
+        <img src="../assets/images/de_anubis.png" alt="Anubis" class="map-image" />
+        <div class="map-info">
+          <h3>Anubis</h3>
+          <p>Anubis is an Egyptian-themed map with a mix of open spaces and tight corridors. Waterways and mid control are key to success on this map.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="train" data-title="Train" data-img="assets/images/de_train.png" data-overview="Train is set in a railway yard with long sightlines and tight corners. It rewards precise aim and strategic positioning." data-fact="Fun Fact: Train has been a staple in Counter-Strike since the early days and is known for its iconic train cars.">
+        <img src="../assets/images/de_train.png" alt="Train" class="map-image" />
+        <div class="map-info">
+          <h3>Train</h3>
+          <p>Train is a classic map featuring a railway yard with multiple train cars and long sightlines. It requires sharp aim and good positioning to control the bombsites.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="cache" data-title="Cache" data-img="assets/images/de_cache.png" data-overview="Cache is set in a radioactive storage facility. It is known for its balanced layout and fast-paced action." data-fact="Fun Fact: Cache was created by the community mapper FMPONE and later adopted by Valve.">
+        <img src="../assets/images/de_cache.png" alt="Cache" class="map-image" />
+        <div class="map-info">
+          <h3>Cache</h3>
+          <p>Cache is a fan-favorite map set in a Chernobyl-style industrial area. Its open mid and quick rotations make for dynamic gameplay.</p>
+        </div>
+      </div>
+      <div class="map-card" data-map="agency" data-title="Agency" data-img="assets/images/cs_agency.png" data-overview="Agency is a hostage rescue map set in a high-rise office building. It features multiple floors and elevators." data-fact="Fun Fact: Agency was created by the community and later added to the official map pool.">
+        <img src="../assets/images/cs_agency.png" alt="Agency" class="map-image" />
+        <div class="map-info">
+          <h3>Agency</h3>
+          <p>Agency is a multi-level office map with elevators and plenty of vertical gameplay. It is a favorite for hostage rescue scenarios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Map Detail Modal -->
+<div id="map-modal" class="modal hidden">
+  <div class="modal-content map-modal-content">
+    <span class="close-button" id="closeMapModal">×</span>
+    <img id="modalMapImg" src="" alt="Map Image" style="width:100%;max-height:320px;object-fit:cover;border-radius:8px;" />
+    <h2 id="modalMapTitle"></h2>
+    <p id="modalMapOverview"></p>
+    <p id="modalMapFact" style="color:#888;font-size:1em;"></p>
+  </div>
+</div>
+
+<div id="weapon-modal" class="modal hidden">
+  <div class="modal-content map-modal-content">
+    <span class="close-button" id="closeWeaponModal">×</span>
+    <img id="modalWeaponImg" src="" alt="Weapon Image" style="width:100%;max-height:320px;object-fit:cover;border-radius:8px;" />
+    <h2 id="modalWeaponTitle"></h2>
+    <p id="modalWeaponOverview"></p>
+    <p id="modalWeaponFact" style="color:#888;font-size:1em;"></p>
+  </div>
+</div>
+
+<div id="second-section" class="section" style="display:none;">
+  <div class="settings-container">
+    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+  </div>
+  <section class="world-news">
+    <h2>CS2 Weapons</h2>
+    <div class="weapon-category">
+      <h3 class="category-toggle" aria-expanded="false">Pistols <span class="toggle-icon">&#9654;</span></h3>
+      <div class="weapon-card-list hidden-category">
+        <!-- Pistols -->
+        <div class="weapon-card" data-weapon="deagle" data-title="Desert Eagle" data-img="assets/images/weapons/CS2_Desert_Eagle_Inventory.png" data-overview="The Desert Eagle is a high-damage pistol with great accuracy but a slow rate of fire." data-fact="Fun Fact: The Desert Eagle is often called the 'Deagle' and is famous for its one-tap headshots.">
+          <img src="../assets/images/weapons/CS2_Desert_Eagle_Inventory.png" alt="Desert Eagle" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Desert Eagle</h3>
+            <p>The Desert Eagle is a powerful pistol capable of killing with a single shot to the head, but it requires precision.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="r8" data-title="R8 Revolver" data-img="assets/images/weapons/CS2_R8_Revolver_Inventory.png" data-overview="The R8 Revolver is a high-damage pistol with a unique firing mechanism." data-fact="Fun Fact: The R8 Revolver can kill with a single shot to the head at close range.">
+          <img src="../assets/images/weapons/CS2_R8_Revolver_Inventory.png" alt="R8 Revolver" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>R8 Revolver</h3>
+            <p>The R8 Revolver is a powerful sidearm, capable of one-shot kills but with a slow trigger pull.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="glock" data-title="Glock-18" data-img="assets/images/weapons/CS2_Glock-18_Inventory.png" data-overview="The Glock-18 is the default Terrorist pistol, offering a high rate of fire and burst mode." data-fact="Fun Fact: The Glock-18 is the only pistol with a burst-fire mode in CS2.">
+          <img src="../assets/images/weapons/CS2_Glock-18_Inventory.png" alt="Glock-18" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Glock-18</h3>
+            <p>The Glock-18 is the standard pistol for Terrorists, featuring a burst-fire mode and high magazine capacity.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="usp" data-title="USP-S" data-img="assets/images/weapons/CS2_USP-S_Inventory.png" data-overview="The USP-S is the default Counter-Terrorist pistol, featuring a silencer for stealthy play." data-fact="Fun Fact: The USP-S is a favorite for pistol rounds due to its accuracy and silenced shots.">
+          <img src="../assets/images/weapons/CS2_USP-S_Inventory.png" alt="USP-S" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>USP-S</h3>
+            <p>The USP-S is a silenced pistol known for its accuracy and is the standard starting weapon for Counter-Terrorists.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="p2000" data-title="P2000" data-img="assets/images/weapons/CS2_P2000_Inventory.png" data-overview="The P2000 is a standard Counter-Terrorist pistol, offering good accuracy and low recoil." data-fact="Fun Fact: The P2000 is an alternative to the USP-S for Counter-Terrorists.">
+          <img src="../assets/images/weapons/CS2_P2000_Inventory.png" alt="P2000" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>P2000</h3>
+            <p>The P2000 is a reliable pistol for Counter-Terrorists, favored for its accuracy and control.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="p250" data-title="P250" data-img="assets/images/weapons/CS2_P250_Inventory.png" data-overview="The P250 is a low-cost pistol available to both teams, offering good armor penetration and fast firing." data-fact="Fun Fact: The P250 is a popular choice for eco rounds due to its low price and effectiveness.">
+          <img src="../assets/images/weapons/CS2_P250_Inventory.png" alt="P250" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>P250</h3>
+            <p>The P250 is a versatile pistol, great for eco and force-buy rounds.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="tec9" data-title="Tec-9" data-img="assets/images/weapons/CS2_Tec-9_Inventory.png" data-overview="The Tec-9 is a semi-automatic pistol for Terrorists, known for its high damage and mobility." data-fact="Fun Fact: The Tec-9 is famous for its run-and-gun potential in pistol rounds.">
+          <img src="../assets/images/weapons/CS2_Tec-9_Inventory.png" alt="Tec-9" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Tec-9</h3>
+            <p>The Tec-9 is a powerful pistol for Terrorists, effective at close to medium range.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="fiveseven" data-title="Five-SeveN" data-img="assets/images/weapons/CS2_Five-SeveN_Inventory.png" data-overview="The Five-SeveN is a semi-automatic pistol for Counter-Terrorists, offering high armor penetration and a large magazine." data-fact="Fun Fact: The Five-SeveN has the highest magazine capacity of any pistol in CS2 (20 rounds).">
+          <img src="../assets/images/weapons/CS2_Five-SeveN_Inventory.png" alt="Five-SeveN" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Five-SeveN</h3>
+            <p>The Five-SeveN is a reliable sidearm for Counter-Terrorists, great against armored opponents.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="cz75" data-title="CZ75-Auto" data-img="assets/images/weapons/CS2_CZ75-Auto_Inventory.png" data-overview="The CZ75-Auto is a fully automatic pistol available to both teams, offering high fire rate but low ammo." data-fact="Fun Fact: The CZ75-Auto is the only fully automatic pistol in CS2.">
+          <img src="../assets/images/weapons/CS2_CZ75-Auto_Inventory.png" alt="CZ75-Auto" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>CZ75-Auto</h3>
+            <p>The CZ75-Auto is a unique pistol with a fast fire rate, but limited magazine size.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="dualberettas" data-title="Dual Berettas" data-img="assets/images/weapons/CS2_Dual_Berettas_Inventory.png" data-overview="The Dual Berettas are a pair of pistols available to both teams, offering a high rate of fire." data-fact="Fun Fact: The Dual Berettas are the only dual-wielded weapons in CS2.">
+          <img src="../assets/images/weapons/CS2_Dual_Berettas_Inventory.png" alt="Dual Berettas" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Dual Berettas</h3>
+            <p>The Dual Berettas offer a unique dual-wielding experience with a high rate of fire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weapon-category">
+      <h3 class="category-toggle" aria-expanded="false">Rifles <span class="toggle-icon">&#9654;</span></h3>
+      <div class="weapon-card-list hidden-category">
+        <!-- Rifles -->
+        <div class="weapon-card" data-weapon="ak47" data-title="AK-47" data-img="assets/images/weapons/CS2_AK-47_Inventory.png" data-overview="The AK-47 is a powerful rifle favored by Terrorists. It is known for its high damage and one-shot headshot potential." data-fact="Fun Fact: The AK-47 is the only rifle in CS2 that can one-tap a helmeted enemy with a single bullet to the head.">
+          <img src="../assets/images/weapons/CS2_AK-47_Inventory.png" alt="AK-47" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>AK-47</h3>
+            <p>The AK-47 is the go-to rifle for Terrorists, offering high damage and deadly accuracy in skilled hands.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="m4a1s" data-title="M4A1-S" data-img="assets/images/weapons/CS2_M4A1-S_Inventory.png" data-overview="The M4A1-S is a silenced rifle used by Counter-Terrorists. It features low recoil and high accuracy." data-fact="Fun Fact: The M4A1-S has a smaller magazine but is quieter and more accurate than the M4A4.">
+          <img src="../assets/images/weapons/CS2_M4A1-S_Inventory.png" alt="M4A1-S" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>M4A1-S</h3>
+            <p>The M4A1-S is a silenced rifle prized for its accuracy and stealth, making it a favorite among Counter-Terrorists.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="m4a4" data-title="M4A4" data-img="assets/images/weapons/CS2_M4A4_Inventory.png" data-overview="The M4A4 is a fully automatic rifle for Counter-Terrorists, known for its high rate of fire and accuracy." data-fact="Fun Fact: The M4A4 has a larger magazine than the M4A1-S.">
+          <img src="../assets/images/weapons/CS2_M4A4_Inventory.png" alt="M4A4" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>M4A4</h3>
+            <p>The M4A4 is a reliable rifle for Counter-Terrorists, offering a high rate of fire and good accuracy.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="sg553" data-title="SG 553" data-img="assets/images/weapons/CS2_SG_553_Inventory.png" data-overview="The SG 553 is a scoped rifle for Terrorists, offering high accuracy and armor penetration." data-fact="Fun Fact: The SG 553 is the only scoped rifle available to Terrorists.">
+          <img src="../assets/images/weapons/CS2_SG_553_Inventory.png" alt="SG 553" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>SG 553</h3>
+            <p>The SG 553 is a powerful rifle with a scope, favored by Terrorists for its precision and damage.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="aug" data-title="AUG" data-img="assets/images/weapons/CS2_AUG_Inventory.png" data-overview="The AUG is a scoped rifle for Counter-Terrorists, known for its accuracy and versatility." data-fact="Fun Fact: The AUG is the only scoped rifle available to Counter-Terrorists.">
+          <img src="../assets/images/weapons/CS2_AUG_Inventory.png" alt="AUG" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>AUG</h3>
+            <p>The AUG is a versatile rifle with a scope, offering high accuracy and control for Counter-Terrorists.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="famas" data-title="FAMAS" data-img="assets/images/weapons/CS2_FAMAS_Inventory.png" data-overview="The FAMAS is a budget rifle for Counter-Terrorists, offering burst fire and good accuracy at a low price." data-fact="Fun Fact: The FAMAS is the only rifle in CS2 with a burst-fire mode.">
+          <img src="../assets/images/weapons/CS2_FAMAS_Inventory.png" alt="FAMAS" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>FAMAS</h3>
+            <p>The FAMAS is a cost-effective rifle for Counter-Terrorists, featuring a unique burst-fire mode.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="galil" data-title="Galil AR" data-img="assets/images/weapons/CS2_Galil_AR_Inventory.png" data-overview="The Galil AR is a budget rifle for Terrorists, known for its affordability and decent firepower." data-fact="Fun Fact: The Galil AR is the cheapest rifle available to Terrorists in CS2.">
+          <img src="../assets/images/weapons/CS2_Galil_AR_Inventory.png" alt="Galil AR" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Galil AR</h3>
+            <p>The Galil AR is a reliable and affordable rifle for Terrorists, ideal for force-buy rounds.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weapon-category">
+      <h3 class="category-toggle" aria-expanded="false">SMGs <span class="toggle-icon">&#9654;</span></h3>
+      <div class="weapon-card-list hidden-category">
+        <!-- SMGs -->
+        <div class="weapon-card" data-weapon="mac10" data-title="MAC-10" data-img="assets/images/weapons/CS2_MAC-10_Inventory.png" data-overview="The MAC-10 is an SMG for Terrorists, known for its high fire rate and mobility." data-fact="Fun Fact: The MAC-10 is a favorite for anti-eco rounds due to its high kill reward.">
+          <img src="../assets/images/weapons/CS2_MAC-10_Inventory.png" alt="MAC-10" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>MAC-10</h3>
+            <p>The MAC-10 is a fast-firing SMG, ideal for aggressive Terrorist strategies.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="mp9" data-title="MP9" data-img="assets/images/weapons/CS2_MP9_Inventory.png" data-overview="The MP9 is a fast-firing SMG for Counter-Terrorists, great for close-range combat and eco rounds." data-fact="Fun Fact: The MP9 has the highest fire rate among SMGs in CS2.">
+          <img src="../assets/images/weapons/CS2_MP9_Inventory.png" alt="MP9" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>MP9</h3>
+            <p>The MP9 is a lightweight SMG with a rapid rate of fire, perfect for aggressive playstyles.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="mp7" data-title="MP7" data-img="assets/images/weapons/CS2_MP7_Inventory.png" data-overview="The MP7 is a versatile SMG available to both teams, offering good accuracy and mobility." data-fact="Fun Fact: The MP7 is popular for its low recoil and high movement speed.">
+          <img src="../assets/images/weapons/CS2_MP7_Inventory.png" alt="MP7" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>MP7</h3>
+            <p>The MP7 is a balanced SMG, favored for its controllable recoil and versatility.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="mp5sd" data-title="MP5-SD" data-img="assets/images/weapons/CS2_MP5-SD_Inventory.png" data-overview="The MP5-SD is a silenced SMG available to both teams, offering stealth and good mobility." data-fact="Fun Fact: The MP5-SD is the only silenced SMG in CS2.">
+          <img src="../assets/images/weapons/CS2_MP5-SD_Inventory.png" alt="MP5-SD" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>MP5-SD</h3>
+            <p>The MP5-SD is a silenced SMG, perfect for stealthy approaches and flanking.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="ump45" data-title="UMP-45" data-img="assets/images/weapons/CS2_UMP-45_Inventory.png" data-overview="The UMP-45 is a versatile SMG available to both teams, offering good damage and armor penetration." data-fact="Fun Fact: The UMP-45 has the highest damage per shot of any SMG in CS2.">
+          <img src="../assets/images/weapons/CS2_UMP-45_Inventory.png" alt="UMP-45" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>UMP-45</h3>
+            <p>The UMP-45 is a hard-hitting SMG, great for eco and force-buy rounds.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="p90" data-title="P90" data-img="assets/images/weapons/CS2_P90_Inventory.png" data-overview="The P90 is an SMG with a large magazine and high rate of fire, effective for rushing and close-quarters." data-fact="Fun Fact: The P90 has the largest magazine of any SMG in CS2 (50 rounds).">
+          <img src="../assets/images/weapons/CS2_P90_Inventory.png" alt="P90" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>P90</h3>
+            <p>The P90 is known for its high magazine capacity and is a favorite for fast-paced rushes.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="bizon" data-title="PP-Bizon" data-img="assets/images/weapons/CS2_PP-Bizon_Inventory.png" data-overview="The PP-Bizon is an SMG with a high magazine capacity and fast reloads." data-fact="Fun Fact: The PP-Bizon has the largest magazine of any SMG in CS2.">
+          <img src="../assets/images/weapons/CS2_PP-Bizon_Inventory.png" alt="PP-Bizon" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>PP-Bizon</h3>
+            <p>The PP-Bizon is a unique SMG with a helical magazine, allowing for quick reloads and sustained fire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weapon-category">
+      <h3 class="category-toggle" aria-expanded="false">Shotguns <span class="toggle-icon">&#9654;</span></h3>
+      <div class="weapon-card-list hidden-category">
+        <!-- Shotguns -->
+        <div class="weapon-card" data-weapon="nova" data-title="Nova" data-img="assets/images/weapons/CS2_Nova_Inventory.png" data-overview="The Nova is a pump-action shotgun, offering high damage at close range for a low price." data-fact="Fun Fact: The Nova is the cheapest shotgun in CS2.">
+          <img src="../assets/images/weapons/CS2_Nova_Inventory.png" alt="Nova" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Nova</h3>
+            <p>The Nova is a budget-friendly shotgun, deadly in close-quarters situations.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="mag7" data-title="MAG-7" data-img="assets/images/weapons/CS2_MAG-7_Inventory.png" data-overview="The MAG-7 is a magazine-fed shotgun exclusive to Counter-Terrorists, effective at close range." data-fact="Fun Fact: The MAG-7 is the only shotgun in CS2 with a magazine instead of a tube.">
+          <img src="../assets/images/weapons/CS2_MAG-7_Inventory.png" alt="MAG-7" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>MAG-7</h3>
+            <p>The MAG-7 is a powerful shotgun for Counter-Terrorists, great for holding tight angles.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="xm1014" data-title="XM1014" data-img="assets/images/weapons/CS2_XM1014_Inventory.png" data-overview="The XM1014 is a semi-automatic shotgun, offering rapid fire and high damage at close range." data-fact="Fun Fact: The XM1014 is the only fully automatic shotgun in CS2.">
+          <img src="../assets/images/weapons/CS2_XM1014_Inventory.png" alt="XM1014" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>XM1014</h3>
+            <p>The XM1014 is a semi-automatic shotgun, perfect for clearing tight spaces quickly.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="sawedoff" data-title="Sawed-Off" data-img="assets/images/weapons/CS2_Sawed-Off_Inventory.png" data-overview="The Sawed-Off is a powerful shotgun for Terrorists, effective at close range." data-fact="Fun Fact: The Sawed-Off deals massive damage up close but is weak at range.">
+          <img src="../assets/images/weapons/CS2_Sawed-Off_Inventory.png" alt="Sawed-Off" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Sawed-Off</h3>
+            <p>The Sawed-Off is a devastating shotgun for Terrorists, best used in close-quarters combat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weapon-category">
+      <h3 class="category-toggle" aria-expanded="false">Machine Guns <span class="toggle-icon">&#9654;</span></h3>
+      <div class="weapon-card-list hidden-category">
+        <!-- Machine Guns -->
+        <div class="weapon-card" data-weapon="m249" data-title="M249" data-img="assets/images/weapons/CS2_M249_Inventory.png" data-overview="The M249 is a light machine gun with a large magazine and high rate of fire." data-fact="Fun Fact: The M249 is the most expensive machine gun in CS2.">
+          <img src="../assets/images/weapons/CS2_M249_Inventory.png" alt="M249" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>M249</h3>
+            <p>The M249 is a powerful LMG, capable of sustained fire and crowd control.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="negev" data-title="Negev" data-img="assets/images/weapons/CS2_Negev_Inventory.png" data-overview="The Negev is a machine gun with a massive magazine and high suppressive fire capability." data-fact="Fun Fact: The Negev has the largest magazine of any weapon in CS2 (150 rounds).">
+          <img src="../assets/images/weapons/CS2_Negev_Inventory.png" alt="Negev" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>Negev</h3>
+            <p>The Negev is a heavy machine gun, great for laying down suppressive fire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weapon-category">
+      <h3 class="category-toggle" aria-expanded="false">Sniper Rifles <span class="toggle-icon">&#9654;</span></h3>
+      <div class="weapon-card-list hidden-category">
+        <!-- Sniper Rifles -->
+        <div class="weapon-card" data-weapon="awp" data-title="AWP" data-img="assets/images/weapons/CS2_AWP_Inventory.png" data-overview="The AWP is a high-powered sniper rifle capable of killing with a single shot to the chest or head." data-fact="Fun Fact: The AWP is infamous for its loud shot and ability to turn the tide of a round instantly.">
+          <img src="../assets/images/weapons/CS2_AWP_Inventory.png" alt="AWP" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>AWP</h3>
+            <p>The AWP is the most powerful sniper rifle in CS2, known for its one-shot kill potential and iconic sound.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="ssg08" data-title="SSG 08" data-img="assets/images/weapons/CS2_SSG_08_Inventory.png" data-overview="The SSG 08 is a lightweight sniper rifle, known as the 'Scout', offering mobility and one-shot headshots." data-fact="Fun Fact: The SSG 08 is the cheapest sniper rifle in CS2.">
+          <img src="../assets/images/weapons/CS2_SSG_08_Inventory.png" alt="SSG 08" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>SSG 08</h3>
+            <p>The SSG 08 is a mobile sniper rifle, perfect for players who like to move and shoot.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="scar20" data-title="SCAR-20" data-img="assets/images/weapons/CS2_SCAR-20_Inventory.png" data-overview="The SCAR-20 is a semi-automatic sniper rifle for Counter-Terrorists, offering high fire rate and accuracy." data-fact="Fun Fact: The SCAR-20 is the only semi-auto sniper for Counter-Terrorists.">
+          <img src="../assets/images/weapons/CS2_SCAR-20_Inventory.png" alt="SCAR-20" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>SCAR-20</h3>
+            <p>The SCAR-20 is a semi-automatic sniper rifle, great for holding long angles on defense.</p>
+          </div>
+        </div>
+        <div class="weapon-card" data-weapon="g3sg1" data-title="G3SG1" data-img="assets/images/weapons/CS2_G3SG1_Inventory.png" data-overview="The G3SG1 is a semi-automatic sniper rifle for Terrorists, offering high fire rate and accuracy." data-fact="Fun Fact: The G3SG1 is the only semi-auto sniper for Terrorists.">
+          <img src="../assets/images/weapons/CS2_G3SG1_Inventory.png" alt="G3SG1" class="weapon-image" />
+          <div class="weapon-info">
+            <h3>G3SG1</h3>
+            <p>The G3SG1 is a semi-automatic sniper rifle, great for aggressive Terrorist play.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+  
+    <div id="settings-modal-tcg" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button" onclick="toggleTCGSettingsModal()">×</span>
+    <h2>Settings</h2>
+
+    <div class="switch-container">
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="darkModeToggleModal"
+        />
+        <span class="slider"></span>
+      </label>
+      <span>Dark Mode</span>
+    </div>
+
+    <div class="social-button-container">
+      <a
+        href="https://discord.gg/t5BGDzzSXg"
+        target="_blank"
+        class="social-button discord"
+        ><i class="fab fa-discord"></i
+      ></a>
+      <a
+        href="https://median.co/share/jrkxbe#apk"
+        target="_blank"
+        class="social-button android"
+        ><i class="fab fa-android"></i
+      ></a>
+    </div>
+  </div>
+</div>
+
+    <div class="copyright-container">
+  <h5>© 2025 DataLibrary.</h5>
+  <h5>This website has been made by pssyho and only me!</h5>
+</div>
+    <script src="../js/script-cs2.js"></script>
+</body>
+</html>

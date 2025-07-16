@@ -278,6 +278,7 @@ const teamData = {
     projects: ["DataLibrary", "Fetch Websites", "Information Websites"],
     socials: {
       discord: "https://discord.gg/t5BGDzzSXg",
+      project: "https://Cooper55555.github.io/Cooper/",
     }
   },
   bravo: {
