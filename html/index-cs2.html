@@ -9,21 +9,33 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
+      <link rel="icon" href="https://cdn.discordapp.com/avatars/1339214670099382382/7e0935121ed73e51d4cf8ab3442feb4c.webp?size=100" type="image/x-icon">
 </head>
 <body>
 
-      <nav id="main-navbar" class="navbar">
-      <a href="https://cooper55555.github.io/DataLibrary/" class="navbar-logo">DataLibrary</a>
+          <nav id="main-navbar" class="navbar">
+      <a href="https://www.datalibrary.online/" class="navbar-logo" style="text-decoration: none;">
+        <div class="logo-container">
+          <i class="fas fa-database logo-icon"></i>
+          <span class="logo-text">DataLibrary</span>
+        </div>
+      </a>
       <div class="navbar-links">
-        <button class="nav-btn active" data-section="first-section">Maps</button>
-        <button class="nav-btn" data-section="second-section">Weapons</button>
+        <button class="nav-btn active" data-section="first-section">
+          <i class="fas fa-solid fa-map-location-dot"></i>
+          <span>MAPS</span>
+        </button>
+        <button class="nav-btn" data-section="second-section">
+          <i class="fas fa-solid fa-gun"></i>
+          <span>WEAPONS</span>
+        </button>
+        <div class="navbar-settings">
+          <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
+        </div>
       </div>
     </nav>
 
 <div id="first-section" class="section">
-  <div class="settings-container">
-    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
-  </div>
   <!-- CS2 Maps Section -->
   <section class="world-news">
     <h2>CS2 Maps</h2>
@@ -131,9 +143,6 @@
 </div>
 
 <div id="second-section" class="section" style="display:none;">
-  <div class="settings-container">
-    <i class="fas fa-cog settings-icon" onclick="toggleTCGSettingsModal()"></i>
-  </div>
   <section class="world-news">
     <h2>CS2 Weapons</h2>
     <div class="weapon-category">
@@ -447,9 +456,8 @@
 </div>
 
     <div class="copyright-container">
-  <h5>© 2025 DataLibrary.</h5>
-  <h5>This website has been made by pssyho and only me!</h5>
-</div>
+    <h5>© 2025 DataLibrary. This website has been made by Psycho and Cooper.</h5>
+  </div>
     <script src="../js/script-cs2.js"></script>
 </body>
 </html>

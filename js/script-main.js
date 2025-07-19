@@ -99,6 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
       keywords: ["Information"],
       progress: 30,
     },
+    {
+      name: "Counter-Strike 2",
+      url: "html/index-cs2.html",
+      description: "Discover the maps and all the weapon information!",
+      image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861",
+      keywords: ["Information"],
+      progress: 100,
+    },
   ];
 
   const app = document.getElementById("app");
@@ -286,9 +294,10 @@ const teamData = {
     role: "Full Stack Dev",
     avatar: "https://cdn.discordapp.com/avatars/767630233926762526/db41dcad4626d6448477887e4b7f39d1.webp?size=80",
     bio: "Full Stack Dev crafting seamless web experiences with HTML, CSS, and JS. Always learning, always improving.",
-    projects: ["API Fetcher", "Order Manager"],
+    projects: ["API Fetcher", "Custom Web Apps"],
     socials: {
       discord: "https://discord.com/users/767630233926762526",
+      github: "https://github.com/rek123p?tab=repositories",
     }
   },
   ampired: {
