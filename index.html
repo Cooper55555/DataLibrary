@@ -462,6 +462,321 @@
     .social-button.android {
       background: linear-gradient(135deg, #3ddc84 0%, #2bb96f 100%);
     }
+
+    .profile-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      gap: 3rem;
+    }
+
+    .profile-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .profile-avatar-large {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--primary-orange);
+      margin: 0 auto 1.5rem;
+      object-fit: cover;
+    }
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: rgba(255, 140, 66, 0.1);
+      border: 1px solid rgba(255, 140, 66, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .achievements-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+      text-align: center;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .achievement-card {
+      background: linear-gradient(135deg, #fdf6f0 0%, #fff8f3 100%);
+      border: 2px solid #f0e6d6;
+      border-radius: 20px;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .achievement-card.unlocked {
+      background: linear-gradient(135deg, #e6f9ec 0%, #f0fdf4 100%);
+      border-color: #86efac;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(34, 197, 94, 0.2);
+    }
+
+    .achievement-card.unlocked:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(34, 197, 94, 0.25);
+    }
+
+    .achievement-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+    }
+
+    .achievement-card.unlocked .achievement-icon {
+      color: #22c55e;
+      animation: achievementPulse 2s infinite;
+    }
+
+    @keyframes achievementPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .achievement-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .achievement-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+
+    .achievement-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-orange), var(--primary-orange-dark));
+      border-radius: 0 0 20px 20px;
+      transition: width 0.5s ease;
+    }
+
+    .achievement-card.unlocked .achievement-progress {
+      width: 100%;
+    }
+
+    .achievement-card:not(.unlocked) .achievement-progress {
+      width: 0%;
+    }
+
+    .achievement-card.unlocked::after {
+      content: '✔';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 1rem;
+      color: #2ecc71;
+      background: #ffffff;
+      border: 2px solid #2ecc71;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .shop-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .shop-item {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shop-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .shop-item-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+    }
+
+    .shop-item-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .shop-item-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .shop-item-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-orange);
+      margin-bottom: 1rem;
+    }
+
+    .buy-btn {
+      background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-dark));
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .buy-btn:hover {
+      background: linear-gradient(135deg, var(--primary-orange-dark), #e55a11);
+      transform: translateY(-2px);
+    }
+
+    .coming-soon-btn {
+      background: linear-gradient(135deg, #94a3b8, #64748b);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: not-allowed;
+      width: 100%;
+      opacity: 0.7;
+    }
+
+    .coming-soon-item {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 2px dashed #cbd5e1;
+      opacity: 0.8;
+    }
+
+    .coming-soon-item:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .coming-soon-icon {
+      background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+      animation: comingSoonPulse 2s infinite;
+    }
+
+    @keyframes comingSoonPulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .profile-container {
+        padding: 1rem;
+        gap: 2rem;
+      }
+
+      .profile-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .achievements-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .shop-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -493,12 +808,8 @@
         <span>BOT</span>
       </button>
       <button class="nav-btn" data-section="fourth-section">
-        <i class="fas fa-solid fa-cart-shopping"></i>
-        <span>SHOP</span>
-      </button>
-      <button class="nav-btn" data-section="fifth-section">
-        <i class="fas fa-solid fa-chart-simple"></i>
-        <span>STATS</span>
+        <i class="fas fa-user"></i>
+        <span>PROFILE</span>
       </button>
       <button class="nav-btn" data-section="sixth-section">
         <i class="fas fa-info-circle"></i>
@@ -549,6 +860,59 @@
   <main id="app"></main>
   </div>
 </div>
+
+<script>
+const games = [
+  {
+    name: "Random Movie Generator",
+    url: "html/index-movie.html",
+    description: "Get random movie recommendations from 10,000+ films!",
+    image: "https://images.unsplash.com/photo-1489599810766-87ab6c43c1b5?w=400&h=300&fit=crop&crop=center",
+    keywords: ["Information"],
+    progress: 100,
+  },
+  {
+    name: "TCG Pack Simulator",
+    url: "html/index-cardgame.html", 
+    description: "Open virtual card packs and collect rare cards!",
+    image: "https://images.unsplash.com/photo-1580387046865-b2f5cbbfaf5d?w=400&h=300&fit=crop&crop=center",
+    keywords: ["Information"],
+    progress: 100,
+  },
+  {
+    name: "Random Number Generator",
+    url: "html/index-randomnumber.html",
+    description: "Generate random numbers for any purpose!",
+    image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=300&fit=crop&crop=center",
+    keywords: ["Information"], 
+    progress: 100,
+  },
+  {
+    name: "Random Password Generator",
+    url: "html/index-passwordgenerator.html",
+    description: "Create secure passwords with customizable options!",
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=400&h=300&fit=crop&crop=center",
+    keywords: ["Information"],
+    progress: 100,
+  },
+  {
+    name: "Gaming Checklist",
+    url: "html/index-checklist.html",
+    description: "Track your gaming achievements and goals!",
+    image: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400&h=300&fit=crop&crop=center",
+    keywords: ["Checklist"],
+    progress: 100,
+  },
+  {
+    name: "Counter-Strike 2",
+    url: "html/index-cs2.html",
+    description: "Discover the maps and all the weapon information!",
+    image: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/capsule_616x353.jpg?t=1749053861",
+    keywords: ["Information"],
+    progress: 100,
+  },
+];
+</script>
 
 <div id="second-section" class="section" style="display:none;">
 
@@ -848,82 +1212,93 @@
 
 <div id="fourth-section" class="section" style="display:none;">
   <div class="hero-section">
-    <h1 class="main-title">DataLibrary Shop</h1>
-    <p class="hero-subtitle">Get rewards and enjoy your items</p>
+    <h1 class="main-title">Profile Dashboard</h1>
+    <p class="hero-subtitle">Your personal stats, achievements, and shop</p>
   </div>
 
-<div class="home-container">
-  <div id="item-grid" class="item-grid"></div>
-</div>
+  <div class="profile-container">
+    <div class="profile-header">
+      <img id="profile-avatar-large" class="profile-avatar-large" src="./svg/unknown.png" alt="Profile Avatar">
+      <h2 id="profile-user-name">Sign in to view your profile</h2>
+      <div class="profile-stats">
+        <div class="stat-card">
+          <div class="stat-value" id="profile-coins">0</div>
+          <div class="stat-label">Coins Earned</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="profile-time">0</div>
+          <div class="stat-label">Minutes Online</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="profile-session">0</div>
+          <div class="stat-label">Session Time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="profile-max-coins">0</div>
+          <div class="stat-label">Max Coins</div>
+        </div>
+      </div>
+    </div>
 
-</div>
+    <div class="achievements-section">
+      <h3 class="section-title">Achievements</h3>
+      <div class="achievements-grid">
+        <div id="first-login" class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-door-open"></i></div>
+          <div class="achievement-name">Welcome</div>
+          <div class="achievement-desc">Sign in for the first time</div>
+          <div class="achievement-progress"></div>
+        </div>
+        <div id="coin-collector" class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-coins"></i></div>
+          <div class="achievement-name">Coin Collector</div>
+          <div class="achievement-desc">Earn your first 100 coins</div>
+          <div class="achievement-progress"></div>
+        </div>
+        <div id="time-keeper" class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-clock"></i></div>
+          <div class="achievement-name">Time Keeper</div>
+          <div class="achievement-desc">Spend 5 hours on the site</div>
+          <div class="achievement-progress"></div>
+        </div>
+        <div id="big-spender" class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-shopping-cart"></i></div>
+          <div class="achievement-name">Big Spender</div>
+          <div class="achievement-desc">Make your first purchase</div>
+          <div class="achievement-progress"></div>
+        </div>
+        <div id="coin-master" class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-crown"></i></div>
+          <div class="achievement-name">Coin Master</div>
+          <div class="achievement-desc">Accumulate 1000 coins</div>
+          <div class="achievement-progress"></div>
+        </div>
+        <div id="dedicated" class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-medal"></i></div>
+          <div class="achievement-name">Dedicated</div>
+          <div class="achievement-desc">Spend 24 hours online</div>
+          <div class="achievement-progress"></div>
+        </div>
+        <div id="explorer" class="achievement-card">
+          <div class="achievement-icon"><i class="fas fa-compass"></i></div>
+          <div class="achievement-name">Explorer</div>
+          <div class="achievement-desc">Visit all website sections</div>
+          <div class="achievement-progress"></div>
+        </div>
+        <div id="social" class="achievement-card">
+          <div class="achievement-icon"><i class="fab fa-discord"></i></div>
+          <div class="achievement-name">Social</div>
+          <div class="achievement-desc">Join the Discord server</div>
+          <div class="achievement-progress"></div>
+        </div>
+      </div>
+    </div>
 
-<div id="fifth-section" class="section" style="display:none;">
-  <div class="hero-section">
-    <h1 class="main-title">Account Statistics</h1>
-    <p class="hero-subtitle">Check out all your achievements and statistics</p>
+    <div class="shop-section">
+      <h3 class="section-title">Shop</h3>
+      <div id="shop-grid" class="shop-grid"></div>
+    </div>
   </div>
-
-<div class="trophy-hall">
-
-  <!-- Time Line (top) -->
-  <svg class="path-lines time-line" viewBox="0 0 1000 6" style="margin-bottom: 50px" preserveAspectRatio="none">
-    <path class="path-base" d="M20 3 H980" />
-    <path class="path-progress" d="M20 3 H980" />
-  </svg>
-
-  <!-- Coin Line (bottom) -->
-  <svg class="path-lines coin-line" viewBox="0 0 1000 6" style="margin-top: 50px" preserveAspectRatio="none">
-    <path class="path-base" d="M20 3 H980" />
-    <path class="path-progress" d="M20 3 H980" />
-  </svg>
-
-  <!-- Coin-Based Trophies -->
-  <div id="coin-rookie" class="trophy coin" style="left: 50px;">
-    <i class="fas fa-coins"></i>
-    Rookie
-  </div>
-  <div id="coin-novice" class="trophy coin" style="left: 250px;">
-    <i class="fas fa-coins"></i>
-    Novice
-  </div>
-  <div id="coin-skilled" class="trophy coin" style="left: 450px;">
-    <i class="fas fa-coins"></i>
-    Skilled
-  </div>
-  <div id="coin-expert" class="trophy coin" style="left: 650px;">
-    <i class="fas fa-coins"></i>
-    Expert
-  </div>
-  <div id="coin-master" class="trophy coin" style="left: 850px;">
-    <i class="fas fa-coins"></i>
-    Master
-  </div>
-
-  <!-- Time-Based Trophies -->
-  <div id="time-rookie" class="trophy time" style="left: 50px;">
-    <i class="fas fa-clock"></i>
-    Rookie
-  </div>
-  <div id="time-novice" class="trophy time" style="left: 250px;">
-    <i class="fas fa-clock"></i>
-    Novice
-  </div>
-  <div id="time-skilled" class="trophy time" style="left: 450px;">
-    <i class="fas fa-clock"></i>
-    Skilled
-  </div>
-  <div id="time-expert" class="trophy time" style="left: 650px;">
-    <i class="fas fa-clock"></i>
-    Expert
-  </div>
-  <div id="time-master" class="trophy time" style="left: 850px;">
-    <i class="fas fa-clock"></i>
-    Master
-  </div>
-
-</div>
-
 </div>
 
 <div id="sixth-section" class="section" style="display:none;">
@@ -1034,6 +1409,39 @@
   </div>
 </div>
 
+<div id="certificate-modal" class="modal hidden">
+  <div class="modal-content-2">
+    <span id="close-cert-btn" class="close-button-2">×</span>
+    <h2>Redeem Certificate</h2>
+    <div class="certificate-body">
+      <p><strong>Item:</strong> <span id="cert-item-name"></span></p>
+      <p><strong>Description:</strong> <span id="cert-item-desc"></span></p>
+      <p><strong>Purchased By:</strong> <span id="cert-user-name"></span></p>
+      <p><strong>Date:</strong> <span id="cert-date"></span></p>
+      <p><strong>Status:</strong> Successfully Redeemed</p>
+    </div>
+  </div>
+</div>
+
+<div id="custom-confirm-modal" class="modal hidden">
+  <div class="modal-content-2">
+    <h3 id="custom-confirm-message">Are you sure?</h3>
+    <div class="confirm-buttons">
+      <button id="confirm-yes" class="confirm-btn yes">Yes</button>
+      <button id="confirm-no" class="confirm-btn no">No</button>
+    </div>
+  </div>
+</div>
+
+<div id="custom-alert-modal" class="modal hidden">
+  <div class="modal-content-2">
+    <h3 id="custom-alert-message">Alert message here</h3>
+    <div class="alert-buttons">
+      <button id="alert-ok-btn" class="alert-btn ok">Okay</button>
+    </div>
+  </div>
+</div>
+
     <div class="copyright-container">
     <h5>© 2025 DataLibrary. This website has been made by the entire DataLibrary team.</h5>
   </div>
@@ -1042,7 +1450,6 @@
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
   import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
 
-  // Your firebase config here
   const firebaseConfig = {
     apiKey: "AIzaSyBAzltCjux1oEtKK6xq6x7g604OqvxYFiM",
     authDomain: "datalibrary-ed02a.firebaseapp.com",
@@ -1063,6 +1470,11 @@
 
   let coinInterval, timeInterval, sessionInterval, currentUser;
 
+  const shopItems = [
+    { name: "VIP Role", desc: "VIP role in Discord server", cost: 500, icon: "crown", available: true },
+    { name: "Coming Soon", desc: "", icon: "fas fa-question", available: false },
+  ];
+
   const getKey = (uid, type) => `${type}_${uid}`;
 
   const load = (uid, type) => parseInt(localStorage.getItem(getKey(uid, type)), 10) || 0;
@@ -1071,6 +1483,31 @@
   function updateDisplay(coins) {
     if (coinValue) coinValue.textContent = coins;
     if (currentUser) unlockTrophies(load(currentUser.uid, 'maxCoins'), load(currentUser.uid, 'timeMinutes'));
+    updateProfileDisplay();
+  }
+
+  function updateProfileDisplay() {
+    if (!currentUser) return;
+    
+    const uid = currentUser.uid;
+    const coins = load(uid, 'coins');
+    const timeMinutes = load(uid, 'timeMinutes');
+    const sessionMinutes = load(uid, 'sessionMinutes');
+    const maxCoins = load(uid, 'maxCoins');
+
+    const profileCoins = $('profile-coins');
+    const profileTime = $('profile-time');
+    const profileSession = $('profile-session');
+    const profileMaxCoins = $('profile-max-coins');
+    const profileUserName = $('profile-user-name');
+    const profileAvatar = $('profile-avatar-large');
+
+    if (profileCoins) profileCoins.textContent = coins;
+    if (profileTime) profileTime.textContent = timeMinutes;
+    if (profileSession) profileSession.textContent = sessionMinutes;
+    if (profileMaxCoins) profileMaxCoins.textContent = maxCoins;
+    if (profileUserName) profileUserName.textContent = currentUser.displayName || currentUser.email.split('@')[0];
+    if (profileAvatar) profileAvatar.src = currentUser.photoURL || '';
   }
 
   function startCoinTimer(user) {
@@ -1101,12 +1538,14 @@
       save(uid, 'timeMinutes', minutes);
       localStorage.setItem(lastKey, Date.now());
       unlockTrophies(load(uid, 'maxCoins'), minutes);
+      updateProfileDisplay();
     }, 60000);
   }
 
   function updateSessionDisplay(minutes) {
     const el = document.getElementById('session-minutes');
     if (el) el.textContent = minutes;
+    updateProfileDisplay();
   }
 
   function startSessionTimer(user) {
@@ -1119,6 +1558,41 @@
       save(uid, 'sessionMinutes', minutes);
       updateSessionDisplay(minutes);
     }, 60000);
+  }
+
+  function createShopItems() {
+    const shopGrid = $('shop-grid');
+    if (!shopGrid) return;
+
+    shopGrid.innerHTML = shopItems.map((item, index) => {
+      if (item.available) {
+        return `
+          <div class="shop-item">
+            <div class="shop-item-icon">
+              <i class="fas fa-${item.icon}"></i>
+            </div>
+            <div class="shop-item-name">${item.name}</div>
+            <div class="shop-item-desc">${item.desc}</div>
+            <div class="shop-item-price">
+              <i class="fas fa-coins"></i>
+              ${item.cost} coins
+            </div>
+            <button class="buy-btn" onclick="buyItem(${index})">Buy Now</button>
+          </div>
+        `;
+      } else {
+        return `
+          <div class="shop-item coming-soon-item">
+            <div class="shop-item-icon coming-soon-icon">
+              <i class="fas fa-${item.icon}"></i>
+            </div>
+            <div class="shop-item-name">${item.name}</div>
+            <div class="shop-item-desc">${item.desc}</div>
+            <button class="coming-soon-btn">Coming Soon</button>
+          </div>
+        `;
+      }
+    }).join('');
   }
 
   signInBtn.onclick = () => signInWithPopup(auth, provider).catch(console.error);
@@ -1142,7 +1616,6 @@
       });
   }
 
-  // Attach the close button listener here instead of inline onclick
   document.getElementById('close-cert-btn').addEventListener('click', confirmCloseCertificate);
 
   function showConfirmModal(message) {
@@ -1205,6 +1678,7 @@
       startCoinTimer(user);
       startTimeTracker(user);
       startSessionTimer(user);
+      updateProfileDisplay();
     } else {
       currentUser = null;
       signInBtn.classList.remove('hidden');
@@ -1214,6 +1688,9 @@
       coinMsg.style.display = 'inline-block';
       updateDisplay(0);
       [coinInterval, timeInterval, sessionInterval].forEach(i => clearInterval(i));
+      
+      const profileUserName = $('profile-user-name');
+      if (profileUserName) profileUserName.textContent = 'Sign in to view your profile';
     }
   });
 
@@ -1224,10 +1701,14 @@
     }
 
     const item = shopItems[index];
-    const uid = currentUser.uid;
+    if (!item.available) {
+      showAlertModal("This item is not available yet.");
+      return;
+    }
 
-    let coins = load(uid, 'coins');          // current coins balance
-    let maxCoins = load(uid, 'maxCoins');    // max coins ever earned
+    const uid = currentUser.uid;
+    let coins = load(uid, 'coins');
+    let maxCoins = load(uid, 'maxCoins');
 
     if (coins < item.cost) {
       showAlertModal("You don't have enough coins.");
@@ -1240,6 +1721,10 @@
 
         coins -= item.cost;
         save(uid, 'coins', coins);
+
+        let purchaseCount = load(uid, 'purchases') || 0;
+        purchaseCount++;
+        save(uid, 'purchases', purchaseCount);
 
         if (coins > maxCoins) {
           maxCoins = coins;
@@ -1264,60 +1749,45 @@ function unlockTrophies(maxCoins, sessionMinutes) {
     if (el) el.classList.toggle('unlocked', condition);
   };
 
-  [
-    { id: "time-rookie", minutes: 300 },
-    { id: "time-novice", minutes: 1500 },
-    { id: "time-skilled", minutes: 4500 },
-    { id: "time-expert", minutes: 7500 },
-    { id: "time-master", minutes: 15000 },
-  ].forEach(t => unlockIf(t.id, sessionMinutes >= t.minutes));
-
-  [
-    { id: "coin-rookie", coins: 250 },
-    { id: "coin-novice", coins: 500 },
-    { id: "coin-skilled", coins: 1000 },
-    { id: "coin-expert", coins: 1750 },
-    { id: "coin-master", coins: 2500 }
-  ].forEach(t => unlockIf(t.id, maxCoins >= t.coins));
-
-  // 🔁 Recalculate the visual progress after unlocking
-  updateLineProgress('.time-line', '.trophy.time');
-  updateLineProgress('.coin-line', '.trophy.coin');
+  if (currentUser) {
+    unlockIf('first-login', true);
+  }
+  
+  unlockIf('coin-collector', maxCoins >= 100);
+  unlockIf('time-keeper', sessionMinutes >= 300);
+  unlockIf('coin-master', maxCoins >= 1000);
+  unlockIf('dedicated', sessionMinutes >= 1440);
+  
+  const purchaseCount = load(currentUser?.uid || '', 'purchases') || 0;
+  unlockIf('big-spender', purchaseCount > 0);
+  
+  const sectionsVisited = load(currentUser?.uid || '', 'sectionsVisited') || 0;
+  unlockIf('explorer', sectionsVisited >= 6);
+  
+  const discordJoined = load(currentUser?.uid || '', 'discordJoined') || false;
+  unlockIf('social', discordJoined);
 }
+
+  window.markSectionVisited = function(section) {
+    if (!currentUser) return;
+    const uid = currentUser.uid;
+    let visited = load(uid, 'sectionsVisited') || 0;
+    if (visited < 6) {
+      visited++;
+      save(uid, 'sectionsVisited', visited);
+      unlockTrophies(load(uid, 'maxCoins'), load(uid, 'timeMinutes'));
+    }
+  };
+
+  window.markDiscordJoined = function() {
+    if (!currentUser) return;
+    const uid = currentUser.uid;
+    save(uid, 'discordJoined', true);
+    unlockTrophies(load(uid, 'maxCoins'), load(uid, 'timeMinutes'));
+  };
+
+  createShopItems();
   </script>
-
-<div id="certificate-modal" class="modal hidden">
-  <div class="modal-content-2">
-    <span id="close-cert-btn" class="close-button-2">×</span>
-    <h2>Redeem Certificate</h2>
-    <div class="certificate-body">
-      <p><strong>Item:</strong> <span id="cert-item-name"></span></p>
-      <p><strong>Description:</strong> <span id="cert-item-desc"></span></p>
-      <p><strong>Purchased By:</strong> <span id="cert-user-name"></span></p>
-      <p><strong>Date:</strong> <span id="cert-date"></span></p>
-      <p><strong>Status:</strong> Successfully Redeemed</p>
-    </div>
-  </div>
-</div>
-
-<div id="custom-confirm-modal" class="modal hidden">
-  <div class="modal-content-2">
-    <h3 id="custom-confirm-message">Are you sure?</h3>
-    <div class="confirm-buttons">
-      <button id="confirm-yes" class="confirm-btn yes">Yes</button>
-      <button id="confirm-no" class="confirm-btn no">No</button>
-    </div>
-  </div>
-</div>
-
-<div id="custom-alert-modal" class="modal hidden">
-  <div class="modal-content-2">
-    <h3 id="custom-alert-message">Alert message here</h3>
-    <div class="alert-buttons">
-      <button id="alert-ok-btn" class="alert-btn ok">Okay</button>
-    </div>
-  </div>
-</div>
 
   <script src="js/script-main.js"></script>
   <script src="html/timeline-main.html"></script>
